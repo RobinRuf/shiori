@@ -1,0 +1,39 @@
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Node Modules
+node_modules/
+
+# Next.js Build Output
+.next/
+.out/
+.turbo/
+
+# tsup Output & Cache
+.tsup/
+dist/
+tsconfig.tsbuildinfo
+tsup.config.bundled*
+
+# Logs
+*.log
+
+# Deployment Folder
+.vercel/
+
+# IDE Configs
+.idea/
+.vscode/
+
+# Environment Files
+.env
+.env.local
+.env.*.local
+
+# Linter Cache
+.eslintcache
+
+# Stat Files
+bundle-stats.html
+_pagefind/

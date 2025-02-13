@@ -44,13 +44,17 @@
     "typescript": "^5.7.3"
   },
   "exports": {
-    ".": {
+    "./components": {
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
-    "./config": {
+    ".": {
       "import": "./dist/config.mjs",
       "require": "./dist/config.js"
+    },
+    "./mdx": {
+      "import": "./dist/mdx.mjs",
+      "require": "./dist/mdx.js"
     },
     "./server": {
       "import": "./dist/server.mjs",

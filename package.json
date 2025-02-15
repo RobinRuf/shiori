@@ -31,11 +31,12 @@
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.0",
-    "remove-markdown": "^0.6.0"
+    "remove-markdown": "^0.6.0",
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
-    "@types/mdx": "^2.0.13",
     "@svgr/plugin-svgo": "^8.1.0",
+    "@types/mdx": "^2.0.13",
     "@types/node": "^22.13.0",
     "@types/react": "^19.0.8",
     "@types/react-syntax-highlighter": "^15.5.13",

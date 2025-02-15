@@ -19,7 +19,6 @@ interface CodeBlockProps {
   primitive?: boolean;
 }
 
-
 /**
  * Renders a syntax-highlighted code block.
  *

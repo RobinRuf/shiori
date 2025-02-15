@@ -2,6 +2,7 @@ import createMDX from '@next/mdx'
 import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import remarkExtractCodeMeta from './mdx-plugins/remark-extract-code-meta';
 
 /**
  * Shiori Wrapper for NextJS Config
@@ -12,7 +13,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 export default function shiori(shioriOptions = {}) {
   const mdxOptions = {
     options: {
-      remarkPlugins: [remarkGfm],
+      remarkPlugins: [remarkGfm, remarkExtractCodeMeta],
       rehypePlugins: [
         rehypeSlug,
         [

@@ -2,7 +2,6 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { IconChevronRight } from "@tabler/icons-react";
-import "../styles/docs.css";
 
 export interface MetaData {
   title?: string;
@@ -45,15 +44,19 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ meta, docsBase }) => {
   }
 
   return (
-    <nav className="shiori-breadcrumbs-nav">
+    <nav className="text-sm flex items-center space-x-2">
       {breadcrumbSegments.map((segment, index) => {
         const isLast = index === breadcrumbSegments.length - 1;
+
         return (
           <React.Fragment key={segment.path}>
             {isLast ? (
-              <span className="shiori-breadcrumbs-text">{segment.label}</span>
+              <span className="font-semibold opacity-100">{segment.label}</span>
             ) : (
-              <Link href={segment.path} className="shiori-breadcrumbs-link">
+              <Link
+                href={segment.path}
+                className="hover:no-underline cursor-pointer text-[var(--color-content-transparent)] hover:text-[var(--color-content)] transition duration-200 ease-in-out"
+              >
                 {segment.label}
               </Link>
             )}

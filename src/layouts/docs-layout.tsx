@@ -47,31 +47,32 @@ export function DocsLayout({ children, navbar, meta }: DocsLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body className={`${font.className}`}>
-        <ThemeProvider enableSystem={true} defaultTheme="dark">
+      <body className={font.className}>
+        <ThemeProvider
+          enableSystem={true}
+          defaultTheme="system"
+          disableTransitionOnChange={true}
+        >
           <ClientWrapper>
             <AnchorLinkHandler />
-            <div className="shiori-container">
+            <div className="flex flex-col w-full max-w-screen-xl mx-auto px-4">
               {navbar && navbar}
-
-              <div className="shiori-content-area">
+              <div className="flex mt-20 relative">
                 {/* Sidebar */}
-                <div className="shiori-sidebar">
-                  <div className="shiori-sidebar-inner">
+                <div className="hidden md:flex w-64 flex-shrink-0">
+                  <div className="fixed top-20 bottom-0 overflow-y-auto w-64">
                     <Sidebar docsBase={docsPath} meta={meta} />
                   </div>
                 </div>
-
-                <main className="shiori-main-content">
-                  <div className="shiori-breadcrumbs">
+                <main className="flex-1 p-6">
+                  <div className="mb-4">
                     <Breadcrumbs docsBase={docsPath} meta={meta} />
                   </div>
                   <div className="docs">{children}</div>
                   <Switcher meta={meta} docsBase={docsPath} />
                 </main>
-
-                <div className="shiori-toc">
-                  <div className="shiori-toc-inner">
+                <div className="hidden lg:flex w-64 flex-shrink-0">
+                  <div className="fixed top-20 bottom-0 w-64">
                     <Toc />
                   </div>
                 </div>

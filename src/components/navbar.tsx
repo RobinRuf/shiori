@@ -37,20 +37,20 @@ export function Navbar({ logo, navItems, githubLink }: NavbarProps) {
   const GithubLogo = theme === "light" ? GithubLightmode : GithubDarkmode;
 
   return (
-    <div className="shiori-navbar-wrapper">
-      <div className="shiori-navbar-fixed">
-        <div className="shiori-navbar-container">
-          <div className="shiori-navbar-left">
+    <div className="w-full flex justify-center px-6 z-50">
+      <div className="fixed top-3 w-full flex justify-center px-6">
+        <div className="w-full max-w-screen-xl bg-[var(--color-accent)] rounded-lg h-14 flex items-center justify-between px-2 shadow">
+          <div className="flex items-center">
             {logo ? <Image src={logo} height={40} alt="Logo" /> : <b>Shiori</b>}
           </div>
-          <div className="shiori-navbar-right">
+          <div className="flex items-center bg-transparent gap-4">
             {navItems && navItems.length > 0 && (
-              <div className="shiori-navbar-navitems">
+              <div className="flex items-center gap-4">
                 {navItems.map(([label, link], index) => (
                   <Link
                     key={index}
                     href={link}
-                    className="shiori-navbar-navitem"
+                    className="font-light cursor-pointer transition-opacity duration-200 ease-out mr-4 no-underline text-inherit hover:opacity-80"
                   >
                     {label}
                   </Link>
@@ -62,7 +62,7 @@ export function Navbar({ logo, navItems, githubLink }: NavbarProps) {
               <Link
                 href={githubLink}
                 target="_blank"
-                className="shiori-navbar-github"
+                className="flex justify-center items-center h-7 w-7"
               >
                 <GithubLogo />
               </Link>

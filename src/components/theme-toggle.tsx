@@ -20,7 +20,7 @@ const ThemeToggle = ({ large }: { large?: boolean }) => {
   if (large) {
     return (
       <button
-        className="theme-toggle-large-button"
+        className="flex items-center gap-2 px-4 py-2 rounded-full text-black bg-transparent border-0 cursor-pointer transition-all duration-200 ease-in-out dark:text-white"
         aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
         onClick={() => setTheme(isDark ? "light" : "dark")}
       >
@@ -29,7 +29,7 @@ const ThemeToggle = ({ large }: { large?: boolean }) => {
         ) : (
           <IconMoon width={20} height={20} strokeWidth={1} />
         )}
-        <span className="theme-toggle-large-label">{modeLabel}</span>
+        <span className="text-sm font-medium">{modeLabel}</span>
       </button>
     );
   }
@@ -38,8 +38,8 @@ const ThemeToggle = ({ large }: { large?: boolean }) => {
     <button
       className={
         isDark
-          ? "theme-toggle-small-button-dark"
-          : "theme-toggle-small-button-light"
+          ? "flex justify-center items-center p-2 rounded bg-transparent border-0 cursor-pointer transition-all duration-200 ease-in hover:bg-[rgba(240,240,240,0.1)]"
+          : "flex justify-center items-center p-2 rounded bg-transparent border-0 cursor-pointer transition-all duration-200 ease-in hover:bg-[rgba(0,0,0,0.1)]"
       }
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       onClick={() => setTheme(isDark ? "light" : "dark")}

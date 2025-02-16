@@ -95,7 +95,7 @@ export default function Search() {
       <>
         {previewStart > 0 && "..."}
         {preview.slice(0, bestStart - previewStart)}
-        <span className="shiori-search-highlight">
+        <span className="bg-yellow-200 text-gray-900 font-bold">
           {preview.slice(bestStart - previewStart, bestEnd - previewStart + 1)}
         </span>
         {preview.slice(bestEnd - previewStart + 1)}
@@ -105,34 +105,33 @@ export default function Search() {
   };
 
   return (
-    <div className="shiori-search-container" ref={containerRef}>
-      <div className="shiori-search-bar">
+    <div className="relative" ref={containerRef}>
+      <div className="flex items-center gap-2 bg-[var(--color-sitebg)] px-4 py-2 rounded-lg shadow w-64">
         <input
           ref={inputRef}
           type="text"
           value={query}
           onChange={handleSearch}
           placeholder="Search documentation..."
-          className="shiori-search-input"
+          className="flex-1 bg-transparent border-0 outline-none"
         />
-        <span className="shiori-search-shortcut">⌘K</span>
+        <span className="text-sm text-gray-500">⌘K</span>
       </div>
       {results.length > 0 && (
-        <ul className="shiori-search-suggestions">
+        <ul className="list-none m-0 p-0 absolute top-[calc(100%+1rem)] right-0 max-w-[30rem] w-[30rem] bg-[var(--color-accent-transparent)] rounded-lg shadow p-2 backdrop-blur">
           {results.map(({ item, matches }, index) => (
             <li
               key={`${item.id}-${index}`}
-              className="shiori-search-suggestion"
+              className="p-2 rounded-lg cursor-pointer transition-colors duration-200 ease-in-out hover:bg-[var(--color-sitebg-transparent)]"
             >
               <Link
                 href={item.url}
-                className="shiori-search-suggestion-link"
                 onClick={() => {
                   resetSearch();
                 }}
               >
-                <div className="shiori-search-title">{item.title}</div>
-                <div className="shiori-search-preview">
+                <div className="font-semibold mb-1">{item.title}</div>
+                <div className="text-sm text-gray-500">
                   {matches
                     ?.filter((match: FuseMatch) => match.key === "content")
                     .slice(0, 1)

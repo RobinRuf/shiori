@@ -61,19 +61,22 @@ export default function Toc() {
   };
 
   return (
-    <aside className="shiori-toc-aside">
-      <div className="shiori-toc-header">On this page</div>
-      <ul className="shiori-toc-list">
+    <aside className="p-4 text-sm w-64 h-full">
+      <div className="font-semibold mb-4 bg-[var(--color-sitebg)]">
+        On this page
+      </div>
+      <ul className="overflow-y-auto max-h-[calc(100%-2rem)] list-none space-y-1">
         {tocItems.map((item) => {
           const isActive = activeId === item.id;
           return (
-            <li
-              key={item.id}
-              className={`shiori-toc-item ${item.level === 3 ? "shiori-toc-item-indent" : ""} ${isActive ? "shiori-toc-item-active" : "shiori-toc-item-inactive"}`}
-            >
+            <li key={item.id} className={`${item.level === 3 ? "pl-4" : ""}`}>
               <button
                 onClick={() => handleClick(item.id)}
-                className="shiori-toc-button"
+                className={`text-left cursor-pointer transition-colors duration-200 ${
+                  isActive
+                    ? "text-[var(--color-primary)] font-semibold opacity-100"
+                    : "text-[var(--color-content-transparent)] hover:text-[var(--color-content)]"
+                }`}
               >
                 {item.text}
               </button>

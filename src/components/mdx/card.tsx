@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import "../../styles/docs.css";
 
 export interface MetaData {
   title?: string;
@@ -33,10 +32,16 @@ const Card: React.FC<CardProps> = ({ path, excerpt, meta }) => {
     excerpt.length > 200 ? `${excerpt.slice(0, 200)}...` : excerpt;
 
   return (
-    <Link key={path} href={`/docs/${path}`} className="mdx-card">
-      <div className="mdx-card-content">
-        <h4 className="mdx-card-title">{title}</h4>
-        <p className="mdx-card-excerpt">{truncatedExcerpt}</p>
+    <Link
+      key={path}
+      href={`/docs/${path}`}
+      className="flex flex-col h-[200px] w-[250px] border border-gray-300 rounded-lg shadow-sm bg-[var(--color-sitebg)] p-4 my-4 mx-auto transition-all duration-200 ease-in-out md:h-[150px] md:w-[400px] hover:shadow-lg hover:border-[var(--color-primary)]"
+    >
+      <div className="flex-1">
+        <h4 className="text-lg font-semibold text-[var(--color-primary)]">
+          {title}
+        </h4>
+        <p className="text-sm text-gray-500 mt-1">{truncatedExcerpt}</p>
       </div>
     </Link>
   );

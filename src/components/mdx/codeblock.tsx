@@ -119,7 +119,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   if (primitive) {
     return (
       <div
-        className="mdx-codeblock-primitive-container"
+        className="relative overflow-x-auto my-10 rounded-lg border border-gray-300 shadow-sm"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -151,13 +151,13 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
         {isHovered && (
           <button
             onClick={handleCopy}
-            className="mdx-codeblock-copy-btn"
+            className="absolute top-2 right-2 border-0 bg-transparent rounded cursor-pointer transition-all duration-200 ease-in-out hover:opacity-80"
             aria-label="Copy to clipboard"
           >
             {copied ? (
               <IconCheck size={20} stroke={1.5} />
             ) : (
-              <IconCopy size={20} stroke={1.5} className="mdx-copy-icon" />
+              <IconCopy size={20} stroke={1.5} />
             )}
           </button>
         )}
@@ -166,22 +166,20 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   }
 
   return (
-    <div className="mdx-codeblock-container">
-      <div className="mdx-codeblock-header">
-        <div className="mdx-codeblock-header-left">
+    <div className="relative border border-gray-300 rounded-lg shadow-sm bg-[var(--color-sitebg)] my-10 overflow-hidden">
+      <div className="flex items-center justify-between p-2 border-b border-gray-300">
+        <div className="flex items-center gap-2 ml-2">
           {Logo && (
             <div className="w-[16px] h-[16px]">
               <Logo />
             </div>
           )}
-          {filename && (
-            <span className="mdx-codeblock-filename">{filename}</span>
-          )}
+          {filename && <span className="text-sm font-light">{filename}</span>}
         </div>
-        <div className="mdx-codeblock-header-right">
+        <div className="flex items-center gap-2 mr-2">
           <button
             onClick={handleCopy}
-            className="mdx-codeblock-copy-btn"
+            className="absolute top-2 right-2 border-0 bg-transparent rounded cursor-pointer transition-all duration-200 ease-in-out hover:opacity-80"
             aria-label="Copy to clipboard"
           >
             {copied ? (
@@ -192,7 +190,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
           </button>
         </div>
       </div>
-      <div className="mdx-codeblock-code-container">
+      <div className="overflow-x-auto">
         <SyntaxHighlighter
           language={language}
           style={theme === "light" ? oneLight : oneDark}

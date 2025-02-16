@@ -41,15 +41,19 @@ function SidebarItemComponent({
 }: SidebarItemProps) {
   return (
     <li
-      className={`shiori-sidebar-item ${level === 2 ? "shiori-sidebar-item-indent" : ""}`}
+      className={`min-w-[14rem] max-w-[18rem] list-none ${
+        level === 2 ? "pl-4" : ""
+      }`}
     >
-      <div className="shiori-sidebar-item-container">
+      <div className="flex items-center">
         <Link
           href={`${docsBase ? docsBase : "/docs"}/${path}`}
-          className={`shiori-sidebar-link ${level === 0 ? "shiori-sidebar-link-bold" : ""} ${
+          className={`flex w-full justify-between items-center text-sm no-underline transition-all duration-200 ease-in-out ${
+            level === 0 ? "font-semibold" : ""
+          } ${
             isActive
-              ? "shiori-sidebar-link-active"
-              : "shiori-sidebar-link-inactive"
+              ? "text-[var(--color-primary)] opacity-100"
+              : "text-[var(--color-content-transparent)] hover:text-[var(--color-content)]"
           }`}
         >
           <span>{label}</span>
@@ -110,7 +114,7 @@ export default function Sidebar({ meta, docsBase }: SidebarProps) {
       if (item.level === 0) {
         return (
           <React.Fragment key={item.path}>
-            <ul className="shiori-sidebar-list">
+            <ul className="py-2 list-none m-0">
               <SidebarItemComponent
                 key={item.path}
                 path={item.path}
@@ -133,7 +137,7 @@ export default function Sidebar({ meta, docsBase }: SidebarProps) {
 
         return (
           <React.Fragment key={item.path}>
-            <ul className="shiori-sidebar-list">
+            <ul className="py-2 list-none m-0">
               <SidebarItemComponent
                 key={item.path}
                 path={item.path}
@@ -167,7 +171,7 @@ export default function Sidebar({ meta, docsBase }: SidebarProps) {
   }, [items, childrenMap, currentPath, docsBase]);
 
   return (
-    <aside className="shiori-sidebar-container">
+    <aside className="p-4 overflow-y-auto">
       <ul>{renderItems()}</ul>
     </aside>
   );

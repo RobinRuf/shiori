@@ -11,8 +11,8 @@
   "scripts": {
     "prettier": "prettier --write .",
     "transform-svgs": "npx @svgr/cli --typescript --icon --out-dir src/icons src/assets",
-    "prebuild": "npm run prettier && npm run transform-svgs",
-    "build": "npm run prebuild && tsup",
+    "prebuild": "echo 'Running Prettier...' && npm run prettier && echo 'Running SVG Transform...' && npm run transform-svgs",
+    "build": "tsup",
     "dev": "npm run transform-svgs && tsup --watch"
   },
   "peerDependencies": {
@@ -34,7 +34,10 @@
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.0",
     "remove-markdown": "^0.6.0",
-    "unist-util-visit": "^5.0.0"
+    "unist-util-visit": "^5.0.0",
+    "postcss": "^8.5.2",
+    "@tailwindcss/postcss": "^4.0.6",
+    "tailwindcss": "^4.0.6"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.4.1",

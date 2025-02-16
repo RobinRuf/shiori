@@ -33,14 +33,14 @@ const Switcher: React.FC<SwitcherProps> = ({ meta, docsBase }) => {
       : null;
 
   return (
-    <div className="shiori-switcher">
+    <div className="flex justify-between items-center mt-10 pt-6 border-t border-[var(--color-content-transparent)]">
       {prevDoc ? (
         <Link
           href={`${docsBase ? docsBase : "/docs"}/${prevDoc}`}
-          className="shiori-switcher-link"
+          className="flex items-center gap-2 transition duration-200 ease-in-out no-underline hover:text-primary"
         >
           <IconChevronLeft size={20} />
-          <span className="shiori-switcher-text">{meta[prevDoc]}</span>
+          <span className="text-sm font-medium">{meta[prevDoc]}</span>
         </Link>
       ) : (
         <div />
@@ -49,9 +49,9 @@ const Switcher: React.FC<SwitcherProps> = ({ meta, docsBase }) => {
       {nextDoc ? (
         <Link
           href={`${docsBase ? docsBase : "/docs"}/${nextDoc}`}
-          className="shiori-switcher-link"
+          className="flex items-center gap-2 transition duration-200 ease-in-out no-underline hover:text-primary"
         >
-          <span className="shiori-switcher-text">{meta[nextDoc]}</span>
+          <span className="text-sm font-medium">{meta[nextDoc]}</span>
           <IconChevronRight size={20} />
         </Link>
       ) : (

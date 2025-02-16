@@ -20,10 +20,10 @@ const ExternalLink: React.FC<ExternalLinkProps> = ({ href, children }) => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="mdx-external-link"
+      className="text-[var(--color-primary)] inline-flex items-center gap-1 no-underline transition-opacity duration-200 ease-in-out hover:opacity-90"
     >
       {children}
-      <IconExternalLink size={16} className="mdx-external-link-icon" />
+      <IconExternalLink size={16} />
     </a>
   );
 };

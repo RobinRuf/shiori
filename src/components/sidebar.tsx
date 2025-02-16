@@ -43,7 +43,7 @@ function SidebarItemComponent({
     <li className={`shiori-sidebar-item ${level === 2 ? "shiori-sidebar-item-indent" : ""}`}>
       <div className="shiori-sidebar-item-container">
         <Link
-          href={`${docsBase ? docsBase : "/docs}"}/${path}`}
+          href={`${docsBase ? docsBase : "/docs"}/${path}`}
           className={`shiori-sidebar-link ${level === 0 ? "shiori-sidebar-link-bold" : ""} ${
             isActive ? "shiori-sidebar-link-active" : "shiori-sidebar-link-inactive"
           }`}
@@ -68,21 +68,36 @@ export default function Sidebar({ meta, docsBase }: SidebarProps) {
   }
   currentPath = currentPath.replace(/^\/+|\/+$/g, "");
 
-  const items: SidebarItem[] = Object.entries(meta)
-    .filter(([key]) => key !== "title")
-    .map(([path, label]) => {
-      const segments = path.split("/");
-      const level = segments.length - 1;
-      const parentPath = level > 0 ? segments.slice(0, -1).join("/") : null;
-      return {
-        path,
-        label: label || "",
-        level,
-        parentPath,
-      };
-    });
+  const items: SidebarItem[] = React.useMemo(() => {
+    return Object.entries(meta)
+      .filter(([key]) => key !== "title")
+      .map(([path, label]) => {
+        const segments = path.split("/");
+        const level = segments.length - 1;
+        const parentPath = level > 0 ? segments.slice(0, -1).join("/") : null;
+        return {
+          path,
+          label: label || "",
+          level,
+          parentPath,
+        };
+      });
+  }, [meta]);
 
-  const renderItems = () => {
+  const childrenMap = React.useMemo(() => {
+    const map: Record<string, SidebarItem[]> = {};
+    items.forEach((item) => {
+      if (item.parentPath) {
+        if (!map[item.parentPath]) {
+          map[item.parentPath] = [];
+        }
+        map[item.parentPath].push(item);
+      }
+    });
+    return map;
+  }, [items]);
+
+  const renderItems = React.useCallback(() => {
     return items.map((item) => {
       if (item.level === 0) {
         return (
@@ -102,9 +117,9 @@ export default function Sidebar({ meta, docsBase }: SidebarProps) {
           </React.Fragment>
         );
       }
-
       if (item.level === 1) {
-        const hasChildren = items.some((child) => child.parentPath === item.path);
+        const children = childrenMap[item.path] || [];
+        const hasChildren = children.length > 0;
         const isExpanded =
           currentPath === item.path || currentPath.startsWith(`${item.path}/`);
 
@@ -123,28 +138,25 @@ export default function Sidebar({ meta, docsBase }: SidebarProps) {
               />
               {isExpanded &&
                 hasChildren &&
-                items
-                  .filter((child) => child.parentPath === item.path)
-                  .map((child) => (
-                    <SidebarItemComponent
-                      key={child.path}
-                      path={child.path}
-                      label={child.label}
-                      level={child.level}
-                      isActive={currentPath === child.path}
-                      hasChildren={false}
-                      isExpanded={false}
-                      docsBase={docsBase}
-                    />
-                  ))}
+                children.map((child) => (
+                  <SidebarItemComponent
+                    key={child.path}
+                    path={child.path}
+                    label={child.label}
+                    level={child.level}
+                    isActive={currentPath === child.path}
+                    hasChildren={false}
+                    isExpanded={false}
+                    docsBase={docsBase}
+                  />
+                ))}
             </ul>
           </React.Fragment>
         );
       }
-
       return null;
     });
-  };
+  }, [items, childrenMap, currentPath, docsBase]);
 
   return (
     <aside className="shiori-sidebar-container">

@@ -1,6 +1,6 @@
 import React from "react";
 import { IconExternalLink } from "@tabler/icons-react";
-import '../../styles/docs.css';
+import "../../styles/docs.css";
 
 export interface ExternalLinkProps {
   href: string;

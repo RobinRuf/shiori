@@ -1,1 +1,1 @@
-export { loadDocs } from './lib/load-docs';
+export { loadDocs } from "./lib/load-docs";

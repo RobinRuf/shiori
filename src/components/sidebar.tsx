@@ -40,18 +40,26 @@ function SidebarItemComponent({
   docsBase,
 }: SidebarItemProps) {
   return (
-    <li className={`shiori-sidebar-item ${level === 2 ? "shiori-sidebar-item-indent" : ""}`}>
+    <li
+      className={`shiori-sidebar-item ${level === 2 ? "shiori-sidebar-item-indent" : ""}`}
+    >
       <div className="shiori-sidebar-item-container">
         <Link
           href={`${docsBase ? docsBase : "/docs"}/${path}`}
           className={`shiori-sidebar-link ${level === 0 ? "shiori-sidebar-link-bold" : ""} ${
-            isActive ? "shiori-sidebar-link-active" : "shiori-sidebar-link-inactive"
+            isActive
+              ? "shiori-sidebar-link-active"
+              : "shiori-sidebar-link-inactive"
           }`}
         >
           <span>{label}</span>
           {hasChildren && (
             <span>
-              {isExpanded ? <IconChevronDown size={18} /> : <IconChevronRight size={18} />}
+              {isExpanded ? (
+                <IconChevronDown size={18} />
+              ) : (
+                <IconChevronRight size={18} />
+              )}
             </span>
           )}
         </Link>

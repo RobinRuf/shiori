@@ -1,9 +1,9 @@
-import Image, { ImageProps } from 'next/image';
-import Card from './components/mdx/card';
-import ExternalLink from './components/mdx/external-link';
-import MDXPreWrapper from './components/mdx/pre-wrapper';
-import type { ComponentType } from 'react';
-import CustomLink from './components/mdx/custom-link';
+import Image, { ImageProps } from "next/image";
+import Card from "./components/mdx/card";
+import ExternalLink from "./components/mdx/external-link";
+import MDXPreWrapper from "./components/mdx/pre-wrapper";
+import type { ComponentType } from "react";
+import CustomLink from "./components/mdx/custom-link";
 
 export type MDXComponents = Partial<Record<string, ComponentType<any>>>;
 

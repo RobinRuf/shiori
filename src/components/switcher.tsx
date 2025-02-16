@@ -2,7 +2,7 @@ import React from "react";
 import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import '../styles/docs.css';
+import "../styles/docs.css";
 
 export interface MetaData {
   title?: string;

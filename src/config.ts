@@ -1,1 +1,1 @@
-export { default as shiori } from './next.config.plugin';
+export { default as shiori } from "./next.config.plugin";

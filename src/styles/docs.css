@@ -8,13 +8,13 @@
   --color-primary: #1d4ed8;
   --color-primary-dark: #2c5ce3;
 
-  --color-sitebg: #F2F2F2;
-  --color-sitebg-transparent: #F2F2F2B3;
+  --color-sitebg: #f2f2f2;
+  --color-sitebg-transparent: #f2f2f2b3;
   --color-content: #0f172a;
-  --color-accent: #FFFFFF;
-  --color-accent-transparent: #FFFFFF80;
+  --color-accent: #ffffff;
+  --color-accent-transparent: #ffffff80;
 
-  --shadow: 0 2px 4px rgba(0,0,0,0.1);
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 *,
@@ -85,7 +85,9 @@ a {
   line-height: 32px;
   margin: 20px 0;
   position: relative;
-  transition: color 0.15s ease-in-out, transform 0.15s ease-in-out;
+  transition:
+    color 0.15s ease-in-out,
+    transform 0.15s ease-in-out;
 }
 
 .docs > h2::before {
@@ -108,7 +110,9 @@ a {
   line-height: 32px;
   margin: 20px 0;
   position: relative;
-  transition: color 0.15s ease-in-out, transform 0.15s ease-in-out;
+  transition:
+    color 0.15s ease-in-out,
+    transform 0.15s ease-in-out;
 }
 
 .docs > h3:hover {
@@ -137,17 +141,17 @@ a {
 /* SYSTEM COLOR */
 @media (prefers-color-scheme: light) {
   :root {
-    --color-sitebg: #F2F2F2;
-    --color-sitebg-transparent: #F2F2F2B3;
+    --color-sitebg: #f2f2f2;
+    --color-sitebg-transparent: #f2f2f2b3;
     --color-content: #0f172a;
-    --color-accent: #FFFFFF;
-    --color-accent-transparent: #FFFFFF80;
+    --color-accent: #ffffff;
+    --color-accent-transparent: #ffffff80;
   }
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --color-sitebg: #121212;
-    --color-sitebg-transparent: #121212B3;
+    --color-sitebg-transparent: #121212b3;
     --color-content: #f3f4f6;
     --color-accent: #171616;
     --color-accent-transparent: #17161680;
@@ -156,15 +160,15 @@ a {
 
 /* DARK/LIGHT MODE */
 :root[data-theme="light"] {
-  --color-sitebg: #F2F2F2;
-  --color-sitebg-transparent: #F2F2F2B3;
+  --color-sitebg: #f2f2f2;
+  --color-sitebg-transparent: #f2f2f2b3;
   --color-content: #0f172a;
-  --color-accent: #FFFFFF;
-  --color-accent-transparent: #FFFFFF80;
+  --color-accent: #ffffff;
+  --color-accent-transparent: #ffffff80;
 }
 :root[data-theme="dark"] {
   --color-sitebg: #121212;
-  --color-sitebg-transparent: #121212B3;
+  --color-sitebg-transparent: #121212b3;
   --color-content: #f3f4f6;
   --color-accent: #171616;
   --color-accent-transparent: #17161680;
@@ -616,7 +620,9 @@ a {
   background-color: var(--color-sitebg);
   padding: 1rem;
   margin: 1rem auto;
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 
 @media (min-width: 768px) {

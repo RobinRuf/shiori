@@ -1,9 +1,9 @@
-import { visit } from 'unist-util-visit';
-import type { Node } from 'unist';
+import { visit } from "unist-util-visit";
+import type { Node } from "unist";
 
 export default function remarkExtractCodeMeta() {
   return (tree: Node) => {
-    visit(tree, 'code', (node: any) => {
+    visit(tree, "code", (node: any) => {
       if (node.meta) {
         node.data = node.data || {};
         node.data.hProperties = node.data.hProperties || {};

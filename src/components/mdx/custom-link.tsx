@@ -1,7 +1,8 @@
 import React from "react";
 import ExternalLink from "./external-link";
 
-interface CustomLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+interface CustomLinkProps
+  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   href: string;
   children: React.ReactNode;
 }

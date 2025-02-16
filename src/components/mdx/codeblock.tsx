@@ -1,9 +1,12 @@
-"use client"
+"use client";
 
 import React, { useState, useMemo } from "react";
 import { useTheme } from "next-themes";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/cjs/prism";
-import { oneDark, oneLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import {
+  oneDark,
+  oneLight,
+} from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { IconCopy, IconCheck } from "@tabler/icons-react";
 import "../../styles/docs.css";
 
@@ -19,7 +22,10 @@ interface CodeBlockProps {
   primitive?: boolean;
 }
 
-function processCode(code: string): { processedCode: string; highlightedLines: number[] } {
+function processCode(code: string): {
+  processedCode: string;
+  highlightedLines: number[];
+} {
   const lines = code.split("\n");
   let outputLines: string[] = [];
   let highlightedLines: number[] = [];
@@ -54,7 +60,7 @@ function processCode(code: string): { processedCode: string; highlightedLines: n
     if (pendingHighlightAfterEnd) {
       highlightedLines.push(outputLines.length - 1);
       pendingHighlightAfterEnd = false;
-    } else if (isInBlock && (outputLines.length - 1) > blockStartIndex) {
+    } else if (isInBlock && outputLines.length - 1 > blockStartIndex) {
       highlightedLines.push(outputLines.length - 1);
     }
   }
@@ -75,11 +81,15 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   const [copied, setCopied] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  const code = React.Children.map(children, (child) =>
-    typeof child === "string" ? child : ""
-  )?.join("") || "";
+  const code =
+    React.Children.map(children, (child) =>
+      typeof child === "string" ? child : "",
+    )?.join("") || "";
 
-  const { processedCode, highlightedLines } = useMemo(() => processCode(code), [code]);
+  const { processedCode, highlightedLines } = useMemo(
+    () => processCode(code),
+    [code],
+  );
 
   const handleCopy = async () => {
     if (!code) return;
@@ -147,8 +157,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
             {copied ? (
               <IconCheck size={20} stroke={1.5} />
             ) : (
-                <IconCopy size={20} stroke={1.5} className="mdx-copy-icon" />
-              )}
+              <IconCopy size={20} stroke={1.5} className="mdx-copy-icon" />
+            )}
           </button>
         )}
       </div>
@@ -164,7 +174,9 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
               <Logo />
             </div>
           )}
-          {filename && <span className="mdx-codeblock-filename">{filename}</span>}
+          {filename && (
+            <span className="mdx-codeblock-filename">{filename}</span>
+          )}
         </div>
         <div className="mdx-codeblock-header-right">
           <button
@@ -175,8 +187,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
             {copied ? (
               <IconCheck size={20} stroke={1.5} />
             ) : (
-                <IconCopy size={20} stroke={1.5} />
-              )}
+              <IconCopy size={20} stroke={1.5} />
+            )}
           </button>
         </div>
       </div>
@@ -190,9 +202,10 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
             if (highlightedLines.includes(lineNumber)) {
               return {
                 style: {
-                  backgroundColor: theme === "light"
-                    ? "rgba(173, 216, 230, 0.3)"
-                    : "rgba(100, 149, 237, 0.25)"
+                  backgroundColor:
+                    theme === "light"
+                      ? "rgba(173, 216, 230, 0.3)"
+                      : "rgba(100, 149, 237, 0.25)",
                 },
               };
             }

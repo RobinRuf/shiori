@@ -1,11 +1,11 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useTheme } from "next-themes";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/cjs/prism";
 import { oneDark, oneLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { IconCopy, IconCheck } from "@tabler/icons-react";
-import '../../styles/docs.css';
+import "../../styles/docs.css";
 
 import { Ts } from "../../icons/codeblock";
 import { Js } from "../../icons/codeblock";
@@ -19,15 +19,52 @@ interface CodeBlockProps {
   primitive?: boolean;
 }
 
-/**
- * Renders a syntax-highlighted code block.
- *
- * @param language - The programming language for syntax highlighting (default: "bash").
- * @param filename - The filename of the code, if applicable.
- * @param primitive - A flag indicating whether to render in a simpler format (default: false).
- * @param children - The content of the code block.
- * @returns The rendered code block.
- */
+function processCode(code: string): { processedCode: string; highlightedLines: number[] } {
+  const lines = code.split("\n");
+  let outputLines: string[] = [];
+  let highlightedLines: number[] = [];
+  let isInBlock = false;
+  let pendingHighlightAfterEnd = false;
+  let blockStartIndex = -1;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+
+    if (line.includes("// highlight-start")) {
+      isInBlock = true;
+      blockStartIndex = outputLines.length;
+      continue;
+    }
+
+    if (line.includes("// highlight-end")) {
+      if (isInBlock) {
+        for (let j = blockStartIndex + 1; j < outputLines.length; j++) {
+          if (!highlightedLines.includes(j)) {
+            highlightedLines.push(j);
+          }
+        }
+        isInBlock = false;
+      }
+      pendingHighlightAfterEnd = true;
+      continue;
+    }
+
+    outputLines.push(line);
+
+    if (pendingHighlightAfterEnd) {
+      highlightedLines.push(outputLines.length - 1);
+      pendingHighlightAfterEnd = false;
+    } else if (isInBlock && (outputLines.length - 1) > blockStartIndex) {
+      highlightedLines.push(outputLines.length - 1);
+    }
+  }
+
+  return {
+    processedCode: outputLines.join("\n"),
+    highlightedLines,
+  };
+}
+
 const CodeBlock: React.FC<CodeBlockProps> = ({
   language = "bash",
   filename,
@@ -40,7 +77,9 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
 
   const code = React.Children.map(children, (child) =>
     typeof child === "string" ? child : ""
-  )?.join("");
+  )?.join("") || "";
+
+  const { processedCode, highlightedLines } = useMemo(() => processCode(code), [code]);
 
   const handleCopy = async () => {
     if (!code) return;
@@ -64,7 +103,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
     return theme === "light" ? TerminalLightmode : TerminalDarkmode;
   };
 
-  const isSingleLine = code?.split("\n").length === 1;
+  const isSingleLine = processedCode.split("\n").length === 1;
+  const Logo = getLogo();
 
   if (primitive) {
     return (
@@ -77,6 +117,17 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
           language={language}
           style={theme === "light" ? oneLight : oneDark}
           showLineNumbers={!isSingleLine}
+          wrapLines={true}
+          lineProps={(lineNumber: number) => {
+            if (highlightedLines.includes(lineNumber)) {
+              return {
+                style: {
+                  backgroundColor: theme === "light" ? "#f0f0f0" : "#333333",
+                },
+              };
+            }
+            return {};
+          }}
           customStyle={{
             margin: 0,
             borderRadius: "0.5rem",
@@ -84,7 +135,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
             fontSize: "14px",
           }}
         >
-          {code || ""}
+          {processedCode}
         </SyntaxHighlighter>
 
         {isHovered && (
@@ -96,15 +147,13 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
             {copied ? (
               <IconCheck size={20} stroke={1.5} />
             ) : (
-              <IconCopy size={20} stroke={1.5} className="mdx-copy-icon" />
-            )}
+                <IconCopy size={20} stroke={1.5} className="mdx-copy-icon" />
+              )}
           </button>
         )}
       </div>
     );
   }
-
-  const Logo = getLogo();
 
   return (
     <div className="mdx-codeblock-container">
@@ -126,8 +175,8 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
             {copied ? (
               <IconCheck size={20} stroke={1.5} />
             ) : (
-              <IconCopy size={20} stroke={1.5} />
-            )}
+                <IconCopy size={20} stroke={1.5} />
+              )}
           </button>
         </div>
       </div>
@@ -136,6 +185,19 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
           language={language}
           style={theme === "light" ? oneLight : oneDark}
           showLineNumbers={!isSingleLine}
+          wrapLines={true}
+          lineProps={(lineNumber: number) => {
+            if (highlightedLines.includes(lineNumber)) {
+              return {
+                style: {
+                  backgroundColor: theme === "light"
+                    ? "rgba(173, 216, 230, 0.3)"
+                    : "rgba(100, 149, 237, 0.25)"
+                },
+              };
+            }
+            return {};
+          }}
           customStyle={{
             margin: 0,
             borderRadius: "0 0 0.5rem 0.5rem",
@@ -143,7 +205,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
             fontSize: "14px",
           }}
         >
-          {code || ""}
+          {processedCode}
         </SyntaxHighlighter>
       </div>
     </div>

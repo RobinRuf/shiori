@@ -31,14 +31,14 @@ export default defineConfig({
     {
       name: 'strip-node-colon',
       renderChunk(code) {
-        const replaced = code.replaceAll(/(?<= from ")node:(.+)(?=";)/g, '$1')
+        const replaced = code.replace(/(?<= from ")node:(.+)(?=";)/g, '$1')
         return { code: replaced }
       }
     },
     {
       name: 'strip-dot-svg',
       renderChunk(code) {
-        const replaced = code.replaceAll(/(?<= from ")(.+)\.svg(?=";)/g, '$1')
+        const replaced = code.replace(/(?<= from ")(.+)\.svg(?=";)/g, '$1')
         return { code: replaced }
       }
     }

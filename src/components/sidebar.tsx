@@ -68,7 +68,6 @@ export default function Sidebar({ meta, docsBase }: SidebarProps) {
   }
   currentPath = currentPath.replace(/^\/+|\/+$/g, "");
 
-  // Memoisiere die Umwandlung von meta in ein Array von SidebarItem, damit dies nur bei Änderung von meta neu berechnet wird.
   const items: SidebarItem[] = React.useMemo(() => {
     return Object.entries(meta)
       .filter(([key]) => key !== "title")
@@ -85,7 +84,6 @@ export default function Sidebar({ meta, docsBase }: SidebarProps) {
       });
   }, [meta]);
 
-  // Baue ein Mapping von übergeordneten Pfaden zu ihren Kindern, um wiederholte Durchläufe zu vermeiden.
   const childrenMap = React.useMemo(() => {
     const map: Record<string, SidebarItem[]> = {};
     items.forEach((item) => {

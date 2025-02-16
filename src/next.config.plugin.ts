@@ -1,8 +1,8 @@
-import createMDX from '@next/mdx'
-import remarkGfm from 'remark-gfm'
-import rehypeSlug from 'rehype-slug'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import remarkExtractCodeMeta from './mdx-plugins/remark-extract-code-meta';
+import createMDX from "@next/mdx";
+import remarkGfm from "remark-gfm";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import remarkExtractCodeMeta from "./mdx-plugins/remark-extract-code-meta";
 
 /**
  * Shiori Wrapper for NextJS Config
@@ -19,7 +19,7 @@ export default function shiori(shioriOptions = {}) {
         [
           rehypeAutolinkHeadings,
           {
-            behavior: 'wrap',
+            behavior: "wrap",
           },
         ],
       ],
@@ -32,7 +32,7 @@ export default function shiori(shioriOptions = {}) {
   return function (nextConfig = {}) {
     return withMDX({
       ...nextConfig,
-      pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
-    })
-  }
+      pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
+    });
+  };
 }

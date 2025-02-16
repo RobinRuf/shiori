@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import '../../styles/docs.css';
+import "../../styles/docs.css";
 
 export interface MetaData {
   title?: string;
@@ -33,11 +33,7 @@ const Card: React.FC<CardProps> = ({ path, excerpt, meta }) => {
     excerpt.length > 200 ? `${excerpt.slice(0, 200)}...` : excerpt;
 
   return (
-    <Link
-      key={path}
-      href={`/docs/${path}`}
-      className="mdx-card"
-    >
+    <Link key={path} href={`/docs/${path}`} className="mdx-card">
       <div className="mdx-card-content">
         <h4 className="mdx-card-title">{title}</h4>
         <p className="mdx-card-excerpt">{truncatedExcerpt}</p>

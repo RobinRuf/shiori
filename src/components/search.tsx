@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Fuse, { RangeTuple } from "fuse.js";
 import Link from "next/link";
-import '../styles/docs.css';
+import "../styles/docs.css";
 
 type FuseMatch = {
   key: string;
@@ -33,13 +33,19 @@ export default function Search() {
         inputRef.current?.focus();
       }
 
-      if (event.key === "Escape" && document.activeElement === inputRef.current) {
+      if (
+        event.key === "Escape" &&
+        document.activeElement === inputRef.current
+      ) {
         resetSearch();
       }
     };
 
     const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
         resetSearch();
       }
     };
@@ -76,7 +82,7 @@ export default function Search() {
 
   const getBestMatchPreview = (text: string, matchIndices: RangeTuple[]) => {
     const sortedIndices = matchIndices.sort(
-      ([startA, endA], [startB, endB]) => endB - startB - (endA - startA)
+      ([startA, endA], [startB, endB]) => endB - startB - (endA - startA),
     );
 
     const [bestStart, bestEnd] = sortedIndices[0];
@@ -114,7 +120,10 @@ export default function Search() {
       {results.length > 0 && (
         <ul className="shiori-search-suggestions">
           {results.map(({ item, matches }, index) => (
-            <li key={`${item.id}-${index}`} className="shiori-search-suggestion">
+            <li
+              key={`${item.id}-${index}`}
+              className="shiori-search-suggestion"
+            >
               <Link
                 href={item.url}
                 className="shiori-search-suggestion-link"
@@ -131,7 +140,7 @@ export default function Search() {
                       <span key={`${item.id}-match-${matchIndex}`}>
                         {getBestMatchPreview(
                           match.value as string,
-                          match.indices as RangeTuple[]
+                          match.indices as RangeTuple[],
                         )}
                       </span>
                     ))}

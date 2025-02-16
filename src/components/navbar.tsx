@@ -2,14 +2,14 @@ import Image, { StaticImageData } from "next/image";
 import Search from "./search";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import '../styles/docs.css';
+import "../styles/docs.css";
 
 import { GithubLightmode } from "../icons";
 import { GithubDarkmode } from "../icons";
 import ThemeToggle from "./theme-toggle";
 
 export interface NavbarProps {
-  logo?: string | StaticImageData
+  logo?: string | StaticImageData;
   navItems?: [string, string][];
   githubLink?: string;
 }
@@ -41,25 +41,29 @@ export function Navbar({ logo, navItems, githubLink }: NavbarProps) {
       <div className="shiori-navbar-fixed">
         <div className="shiori-navbar-container">
           <div className="shiori-navbar-left">
-            {logo ? (
-              <Image src={logo} height={40} alt="Logo" />
-            ) : (
-                <b>Shiori</b>
-              )}
+            {logo ? <Image src={logo} height={40} alt="Logo" /> : <b>Shiori</b>}
           </div>
           <div className="shiori-navbar-right">
             {navItems && navItems.length > 0 && (
               <div className="shiori-navbar-navitems">
                 {navItems.map(([label, link], index) => (
-                  <Link key={index} href={link} className="shiori-navbar-navitem">
+                  <Link
+                    key={index}
+                    href={link}
+                    className="shiori-navbar-navitem"
+                  >
                     {label}
                   </Link>
                 ))}
               </div>
             )}
             <Search />
-            { githubLink && (
-              <Link href={githubLink} target="_blank" className="shiori-navbar-github">
+            {githubLink && (
+              <Link
+                href={githubLink}
+                target="_blank"
+                className="shiori-navbar-github"
+              >
                 <GithubLogo />
               </Link>
             )}

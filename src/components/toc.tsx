@@ -19,7 +19,7 @@ export default function Toc() {
           id: heading.id,
           text: heading.textContent || "",
           level: heading.tagName === "H2" ? 2 : 3,
-        })
+        }),
       );
       setTocItems(headings);
 
@@ -31,7 +31,7 @@ export default function Toc() {
             }
           });
         },
-        { rootMargin: "0px 0px -70% 0px" }
+        { rootMargin: "0px 0px -70% 0px" },
       );
 
       headings.forEach((heading) => {
@@ -62,9 +62,7 @@ export default function Toc() {
 
   return (
     <aside className="shiori-toc-aside">
-      <div className="shiori-toc-header">
-        On this page
-      </div>
+      <div className="shiori-toc-header">On this page</div>
       <ul className="shiori-toc-list">
         {tocItems.map((item) => {
           const isActive = activeId === item.id;

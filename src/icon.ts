@@ -1,5 +1,5 @@
-import type { FC, SVGProps } from 'react'
+import type { FC, SVGProps } from "react";
 
-declare const ReactComponent: FC<SVGProps<SVGElement>>
+declare const ReactComponent: FC<SVGProps<SVGElement>>;
 
-export { ReactComponent }
+export { ReactComponent };

@@ -2,7 +2,7 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { IconChevronRight } from "@tabler/icons-react";
-import '../styles/docs.css';
+import "../styles/docs.css";
 
 export interface MetaData {
   title?: string;
@@ -21,7 +21,10 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ meta, docsBase }) => {
   const pathWithoutBase = pathname.replace(new RegExp(`^${base}/`), "");
   const pathSegments = pathWithoutBase.split("/");
 
-  if (pathname === base || (pathSegments.length === 1 && pathSegments[0] === "")) {
+  if (
+    pathname === base ||
+    (pathSegments.length === 1 && pathSegments[0] === "")
+  ) {
     return null;
   }
 

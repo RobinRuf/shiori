@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 import { GeistSans } from "geist/font/sans";
-import Sidebar from '../components/sidebar';
-import Toc from '../components/toc';
-import Breadcrumbs from '../components/breadcrumbs';
-import { ThemeProvider } from 'next-themes';
-import AnchorLinkHandler from '../components/anchor-link-handler';
-import Switcher from '../components/switcher';
-import ClientWrapper from '../components/client-wrapper';
-import '../styles/docs.css';
+import Sidebar from "../components/sidebar";
+import Toc from "../components/toc";
+import Breadcrumbs from "../components/breadcrumbs";
+import { ThemeProvider } from "next-themes";
+import AnchorLinkHandler from "../components/anchor-link-handler";
+import Switcher from "../components/switcher";
+import ClientWrapper from "../components/client-wrapper";
+import "../styles/docs.css";
 
 const font = GeistSans;
 
@@ -48,42 +48,38 @@ export function DocsLayout({ children, navbar, meta }: DocsLayoutProps) {
     <html lang="en" suppressHydrationWarning>
       <head />
       <body className={`${font.className}`}>
-    <ThemeProvider enableSystem={true} defaultTheme="dark">
-      <ClientWrapper>
-        <AnchorLinkHandler />
-        <div className="shiori-container">
-          {navbar && (
-            navbar
-          )}
+        <ThemeProvider enableSystem={true} defaultTheme="dark">
+          <ClientWrapper>
+            <AnchorLinkHandler />
+            <div className="shiori-container">
+              {navbar && navbar}
 
-          <div className="shiori-content-area">
-            {/* Sidebar */}
-            <div className="shiori-sidebar">
-              <div className="shiori-sidebar-inner">
-                <Sidebar docsBase={docsPath} meta={meta} />
+              <div className="shiori-content-area">
+                {/* Sidebar */}
+                <div className="shiori-sidebar">
+                  <div className="shiori-sidebar-inner">
+                    <Sidebar docsBase={docsPath} meta={meta} />
+                  </div>
+                </div>
+
+                <main className="shiori-main-content">
+                  <div className="shiori-breadcrumbs">
+                    <Breadcrumbs docsBase={docsPath} meta={meta} />
+                  </div>
+                  <div className="docs">{children}</div>
+                  <Switcher meta={meta} docsBase={docsPath} />
+                </main>
+
+                <div className="shiori-toc">
+                  <div className="shiori-toc-inner">
+                    <Toc />
+                  </div>
+                </div>
               </div>
             </div>
-
-            <main className="shiori-main-content">
-              <div className="shiori-breadcrumbs">
-                <Breadcrumbs docsBase={docsPath} meta={meta} />
-              </div>
-              <div className="docs">
-                {children}
-              </div>
-              <Switcher meta={meta} docsBase={docsPath} />
-            </main>
-
-            <div className="shiori-toc">
-              <div className="shiori-toc-inner">
-                <Toc />
-              </div>
-            </div>
-          </div>
-        </div>
-      </ClientWrapper>
-    </ThemeProvider>
-    </body>
+          </ClientWrapper>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

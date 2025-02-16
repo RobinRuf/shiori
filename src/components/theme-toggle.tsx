@@ -3,9 +3,9 @@
 import { useEffect } from "react";
 import { useTheme } from "next-themes";
 import { IconMoon, IconSun } from "@tabler/icons-react";
-import '../styles/docs.css';
+import "../styles/docs.css";
 
-const ThemeToggle = ({ large }: { large?: boolean; }) => {
+const ThemeToggle = ({ large }: { large?: boolean }) => {
   const { theme, setTheme, systemTheme } = useTheme();
   const current = theme === "system" ? systemTheme : theme;
   const isDark = current === "dark";

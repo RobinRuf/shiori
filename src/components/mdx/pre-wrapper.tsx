@@ -13,7 +13,12 @@ interface MDXPreWrapperProps {
 }
 
 function MDXPreWrapper({ children }: MDXPreWrapperProps) {
-  const { className, filename, primitive, children: codeContent } = children.props;
+  const {
+    className,
+    filename,
+    primitive,
+    children: codeContent,
+  } = children.props;
 
   let language = "bash";
   if (className) {

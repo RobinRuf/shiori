@@ -9,8 +9,10 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
+    "prettier": "prettier --write .",
     "transform-svgs": "npx @svgr/cli --typescript --icon --out-dir src/icons src/assets",
-    "build": "npm run transform-svgs && tsup",
+    "prebuild": "npm run prettier && npm run transform-svgs",
+    "build": "npm run prebuild && tsup",
     "dev": "npm run transform-svgs && tsup --watch"
   },
   "peerDependencies": {
@@ -35,12 +37,16 @@
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
     "@svgr/plugin-svgo": "^8.1.0",
     "@types/mdx": "^2.0.13",
     "@types/node": "^22.13.0",
     "@types/react": "^19.0.8",
     "@types/react-syntax-highlighter": "^15.5.13",
     "esbuild-plugin-svgr": "^3.0.0",
+    "prettier": "^3.5.1",
+    "prettier-plugin-pkg": "^0.18.1",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "tsup": "^8.3.5",
     "typescript": "^5.7.3"
   },

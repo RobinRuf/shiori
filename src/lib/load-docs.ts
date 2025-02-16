@@ -20,7 +20,10 @@ export const loadDocs = (meta: MetaData) => {
   const physicalDocsDirectory = path.join(process.cwd(), "app", docsPath);
 
   // Der Pfad zur statischen Suchindex-Datei wird im physischen Verzeichnis abgelegt.
-  const indexPath = path.join(physicalDocsDirectory, "shiori-search-index.json");
+  const indexPath = path.join(
+    physicalDocsDirectory,
+    "shiori-search-index.json",
+  );
 
   // Falls die Suchindex-Datei existiert, wird sie geladen.
   if (fs.existsSync(indexPath)) {
@@ -28,7 +31,8 @@ export const loadDocs = (meta: MetaData) => {
     return JSON.parse(data);
   }
 
-  const docs: { id: string; title: string; content: string; url: string }[] = [];
+  const docs: { id: string; title: string; content: string; url: string }[] =
+    [];
 
   const traverseDirectory = (directory: string) => {
     const files = fs.readdirSync(directory);
@@ -47,7 +51,10 @@ export const loadDocs = (meta: MetaData) => {
           .join("\n");
 
         // Remove <CodeBlock> ... </CodeBlock> blocks completely
-        const withoutCodeBlocks = withoutImports.replace(/<CodeBlock[\s\S]*?<\/CodeBlock>/gi, '');
+        const withoutCodeBlocks = withoutImports.replace(
+          /<CodeBlock[\s\S]*?<\/CodeBlock>/gi,
+          "",
+        );
 
         // Remove Markdown syntax
         const plainText = removeMarkdown(withoutCodeBlocks);

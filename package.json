@@ -1,6 +1,6 @@
 {
   "name": "shiori",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "A modern and fast to setup Documentation Framework for NextJS 14+",
   "author": "Robin Ruf",
   "keywords": [],
@@ -14,7 +14,9 @@
     "transform-svgs": "npx @svgr/cli --typescript --icon --out-dir src/icons src/assets",
     "prebuild": "echo 'Running Prettier...' && npm run prettier && echo 'Running SVG Transform...' && npm run transform-svgs",
     "build": "tsup",
-    "dev": "npm run transform-svgs && tsup --watch"
+    "dev": "npm run transform-svgs && tsup --watch",
+    "version": "changeset version",
+    "release": "changeset publish"
   },
   "peerDependencies": {
     "next": ">=14",
@@ -41,6 +43,7 @@
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.28.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
     "@svgr/plugin-svgo": "^8.1.0",
     "@types/mdx": "^2.0.13",

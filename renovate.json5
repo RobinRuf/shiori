@@ -4,18 +4,9 @@
   schedule: ["every weekend"],
   packageRules: [
     {
-      groupName: "TypeScript & Linting",
+      groupName: "TypeScript & Prettier",
       matchPackageNames: [
         "typescript",
-        "@typescript-eslint/eslint-plugin",
-        "@typescript-eslint/parser",
-        "eslint",
-        "eslint-config-next",
-        "eslint-plugin-import",
-        "eslint-plugin-react",
-        "eslint-plugin-react-hooks",
-        "eslint-plugin-unicorn",
-        "eslint-plugin-typescript-sort-keys",
         "prettier",
         "prettier-plugin-pkg",
         "prettier-plugin-tailwindcss",
@@ -48,8 +39,6 @@
     {
       groupName: "Icons & Utility",
       matchPackageNames: [
-        "@tabler/icons-react",
-        "geist",
         "unist-util-visit",
         "remove-markdown",
         "gray-matter",

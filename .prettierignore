@@ -3,3 +3,5 @@ CONTRIBUTING.md
 README.md
 LICENSE
 .gitignore
+.changeset
+.github

@@ -14,8 +14,6 @@ jobs:
   setup:
     name: Setup & Install Dependencies
     runs-on: ubuntu-latest
-    outputs:
-      cache-key: ${{ steps.cache-node-modules.outputs.cache-hit }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -24,11 +22,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install Dependencies
         run: npm install
-        id: cache-node-modules
+
+      - name: Cache Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
 
   lint:
     name: Lint Code
@@ -39,10 +42,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Restore Dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+        run: npm install  # **Sicherstellen, dass eslint & prettier installiert sind**
 
       - name: Run ESLint
         run: npm run lint
@@ -59,13 +59,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Restore Dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+        run: npm install
 
-      - name: TypeScript Check
-        run: npm run tsc -- --noEmit
+      - name: TypeScript Check (via tsup)
+        run: npm run build -- --noEmit
 
   build:
     name: Build Project
@@ -76,10 +73,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Restore Dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+        run: npm install
 
       - name: Build Project
         run: npm run build
@@ -93,10 +87,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Restore Dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: npm-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+        run: npm install
 
       - name: Run Security Audit
         run: npm audit --audit-level=moderate || echo "Security audit failed"

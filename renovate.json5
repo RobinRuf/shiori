@@ -19,8 +19,8 @@
         "prettier",
         "prettier-plugin-pkg",
         "prettier-plugin-tailwindcss",
-        "@ianvs/prettier-plugin-sort-imports"
-      ]
+        "@ianvs/prettier-plugin-sort-imports",
+      ],
     },
     {
       groupName: "Next.js & MDX",
@@ -29,16 +29,12 @@
         "@next/mdx",
         "next-themes",
         "@mdx-js/loader",
-        "@mdx-js/react"
-      ]
+        "@mdx-js/react",
+      ],
     },
     {
       groupName: "Tailwind & PostCSS",
-      matchPackageNames: [
-        "tailwindcss",
-        "@tailwindcss/postcss",
-        "postcss"
-      ]
+      matchPackageNames: ["tailwindcss", "@tailwindcss/postcss", "postcss"],
     },
     {
       groupName: "Code Highlighting",
@@ -46,8 +42,8 @@
         "react-syntax-highlighter",
         "rehype-autolink-headings",
         "rehype-slug",
-        "remark-gfm"
-      ]
+        "remark-gfm",
+      ],
     },
     {
       groupName: "Icons & Utility",
@@ -57,9 +53,9 @@
         "unist-util-visit",
         "remove-markdown",
         "gray-matter",
-        "fuse.js"
-      ]
-    }
+        "fuse.js",
+      ],
+    },
   ],
-  baseBranches: ["main"]
+  baseBranches: ["main"],
 }

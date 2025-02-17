@@ -24,4 +24,5 @@ export default {
       },
     },
   ],
+  proseWrap: "always",
 };

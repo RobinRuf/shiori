@@ -19,7 +19,7 @@ The existing solutions either didn't satisfy me in various ways or were complete
 
 So if you have time, desire and ideas that you think would be good for this package, feel free to contribute. 😊
 
-Please follow the [Contribution Guide](https://github.com/RobinRuf/shiori/new/main?filename=CONTRIBUTING.md)
+Please follow the [Contribution Guide](https://github.com/RobinRuf/shiori/blob/main/CONTRIBUTING.md)
 
 ## TODO
 coming soon...

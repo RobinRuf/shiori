@@ -1,0 +1,65 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: ["config:recommended"],
+  schedule: ["every weekend"],
+  packageRules: [
+    {
+      groupName: "TypeScript & Linting",
+      matchPackageNames: [
+        "typescript",
+        "@typescript-eslint/eslint-plugin",
+        "@typescript-eslint/parser",
+        "eslint",
+        "eslint-config-next",
+        "eslint-plugin-import",
+        "eslint-plugin-react",
+        "eslint-plugin-react-hooks",
+        "eslint-plugin-unicorn",
+        "eslint-plugin-typescript-sort-keys",
+        "prettier",
+        "prettier-plugin-pkg",
+        "prettier-plugin-tailwindcss",
+        "@ianvs/prettier-plugin-sort-imports"
+      ]
+    },
+    {
+      groupName: "Next.js & MDX",
+      matchPackageNames: [
+        "next",
+        "@next/mdx",
+        "next-themes",
+        "@mdx-js/loader",
+        "@mdx-js/react"
+      ]
+    },
+    {
+      groupName: "Tailwind & PostCSS",
+      matchPackageNames: [
+        "tailwindcss",
+        "@tailwindcss/postcss",
+        "postcss"
+      ]
+    },
+    {
+      groupName: "Code Highlighting",
+      matchPackageNames: [
+        "react-syntax-highlighter",
+        "rehype-autolink-headings",
+        "rehype-slug",
+        "remark-gfm"
+      ]
+    },
+    {
+      groupName: "Icons & Utility",
+      matchPackageNames: [
+        "@tabler/icons-react",
+        "geist",
+        "unist-util-visit",
+        "remove-markdown",
+        "gray-matter",
+        "fuse.js"
+      ]
+    }
+  ],
+  baseBranches: ["main"]
+}

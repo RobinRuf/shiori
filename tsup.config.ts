@@ -1,3 +1,6 @@
+import fs from "node:fs/promises";
+import path from "node:path";
+import { $ } from "zx";
 import { defineConfig } from "tsup";
 import svgr from "esbuild-plugin-svgr";
 import { defaultEntry } from "./default-entry";
@@ -39,4 +42,23 @@ export default defineConfig({
       },
     },
   ],
+  async onSuccess() {
+    // Use Tailwind CSS CLI because CSS processing by tsup produce different result
+    await $`npx @tailwindcss/cli -i src/styles/docs.css -o dist/styles/docs.css`;
+    const styleContent = await fs.readFile(
+      path.resolve("dist", "styles/docs.css"),
+      "utf8",
+    );
+    await fs.writeFile(
+      path.resolve("dist", "style-prefixed.css"),
+      styleContent
+        .replace("@layer utilities", "@layer v4-utilities")
+        .replace("@layer base", "@layer v4-base")
+        .replace(
+          "@layer theme, base, components, utilities",
+          "@layer theme, v4-base, components, v4-utilities",
+        ),
+    );
+    console.log("✅ `dist/style-prefixed.css` successfully created");
+  },
 });

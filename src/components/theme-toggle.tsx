@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import { useTheme } from "next-themes";
 import { IconMoon, IconSun } from "@tabler/icons-react";
-import "../styles/docs.css";
 
 const ThemeToggle = ({ large }: { large?: boolean }) => {
   const { theme, setTheme, systemTheme } = useTheme();
@@ -20,7 +19,7 @@ const ThemeToggle = ({ large }: { large?: boolean }) => {
   if (large) {
     return (
       <button
-        className="flex items-center gap-2 px-4 py-2 rounded-full text-black bg-transparent border-0 cursor-pointer transition-all duration-200 ease-in-out dark:text-white"
+        className="sh:flex sh:items-center sh:gap-2 sh:px-4 sh:py-2 sh:rounded-full sh:text-black sh:bg-transparent sh:border-0 sh:cursor-pointer sh:transition-all sh:duration-200 sh:ease-in-out sh:dark:text-white"
         aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
         onClick={() => setTheme(isDark ? "light" : "dark")}
       >
@@ -29,7 +28,7 @@ const ThemeToggle = ({ large }: { large?: boolean }) => {
         ) : (
           <IconMoon width={20} height={20} strokeWidth={1} />
         )}
-        <span className="text-sm font-medium">{modeLabel}</span>
+        <span className="sh:text-sm sh:font-medium">{modeLabel}</span>
       </button>
     );
   }
@@ -38,8 +37,8 @@ const ThemeToggle = ({ large }: { large?: boolean }) => {
     <button
       className={
         isDark
-          ? "flex justify-center items-center p-2 rounded bg-transparent border-0 cursor-pointer transition-all duration-200 ease-in hover:bg-[rgba(240,240,240,0.1)]"
-          : "flex justify-center items-center p-2 rounded bg-transparent border-0 cursor-pointer transition-all duration-200 ease-in hover:bg-[rgba(0,0,0,0.1)]"
+          ? "sh:flex sh:justify-center sh:items-center sh:p-2 sh:rounded sh:bg-transparent sh:border-0 sh:cursor-pointer sh:transition-all sh:duration-200 sh:ease-in sh:hover:bg-[rgba(240,240,240,0.1)]"
+          : "sh:flex sh:justify-center sh:items-center sh:p-2 sh:rounded sh:bg-transparent sh:border-0 sh:cursor-pointer sh:transition-all sh:duration-200 sh:ease-in sh:hover:bg-[rgba(0,0,0,0.1)]"
       }
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       onClick={() => setTheme(isDark ? "light" : "dark")}

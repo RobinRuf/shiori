@@ -2,7 +2,6 @@ import React from "react";
 import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import "../styles/docs.css";
 
 export interface MetaData {
   title?: string;
@@ -33,14 +32,14 @@ const Switcher: React.FC<SwitcherProps> = ({ meta, docsBase }) => {
       : null;
 
   return (
-    <div className="flex justify-between items-center mt-10 pt-6 border-t border-[var(--color-content-transparent)]">
+    <div className="sh:flex sh:justify-between sh:items-center sh:mt-10 sh:pt-6 sh:border-t sh:border-content-transparent">
       {prevDoc ? (
         <Link
           href={`${docsBase ? docsBase : "/docs"}/${prevDoc}`}
-          className="flex items-center gap-2 transition duration-200 ease-in-out no-underline hover:text-primary"
+          className="sh:flex sh:items-center sh:gap-2 sh:transition sh:duration-200 sh:ease-in-out sh:no-underline sh:hover:text-primary"
         >
           <IconChevronLeft size={20} />
-          <span className="text-sm font-medium">{meta[prevDoc]}</span>
+          <span className="sh:text-sm sh:font-medium">{meta[prevDoc]}</span>
         </Link>
       ) : (
         <div />
@@ -49,9 +48,9 @@ const Switcher: React.FC<SwitcherProps> = ({ meta, docsBase }) => {
       {nextDoc ? (
         <Link
           href={`${docsBase ? docsBase : "/docs"}/${nextDoc}`}
-          className="flex items-center gap-2 transition duration-200 ease-in-out no-underline hover:text-primary"
+          className="sh:flex sh:items-center sh:gap-2 sh:transition sh:duration-200 sh:ease-in-out sh:no-underline sh:hover:text-primary"
         >
-          <span className="text-sm font-medium">{meta[nextDoc]}</span>
+          <span className="sh:text-sm sh:font-medium">{meta[nextDoc]}</span>
           <IconChevronRight size={20} />
         </Link>
       ) : (

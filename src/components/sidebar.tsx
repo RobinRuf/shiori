@@ -41,19 +41,19 @@ function SidebarItemComponent({
 }: SidebarItemProps) {
   return (
     <li
-      className={`min-w-[14rem] max-w-[18rem] list-none ${
-        level === 2 ? "pl-4" : ""
+      className={`sh:min-w-[14rem] sh:max-w-[18rem] sh:list-none ${
+        level === 2 ? "sh:pl-4" : ""
       }`}
     >
-      <div className="flex items-center">
+      <div className="sh:flex sh:items-center">
         <Link
           href={`${docsBase ? docsBase : "/docs"}/${path}`}
-          className={`flex w-full justify-between items-center text-sm no-underline transition-all duration-200 ease-in-out ${
-            level === 0 ? "font-semibold" : ""
+          className={`sh:flex sh:w-full sh:justify-between sh:items-center sh:text-sm sh:no-underline sh:transition-all sh:duration-200 sh:ease-in-out ${
+            level === 0 ? "sh:font-semibold" : ""
           } ${
             isActive
-              ? "text-[var(--color-primary)] opacity-100"
-              : "text-[var(--color-content-transparent)] hover:text-[var(--color-content)]"
+              ? "sh:text-primary sh:opacity-100"
+              : "sh:text-content-transparent sh:hover:text-content"
           }`}
         >
           <span>{label}</span>
@@ -114,7 +114,7 @@ export default function Sidebar({ meta, docsBase }: SidebarProps) {
       if (item.level === 0) {
         return (
           <React.Fragment key={item.path}>
-            <ul className="py-2 list-none m-0">
+            <ul className="sh:py-2 sh:list-none sh:m-0">
               <SidebarItemComponent
                 key={item.path}
                 path={item.path}
@@ -137,7 +137,7 @@ export default function Sidebar({ meta, docsBase }: SidebarProps) {
 
         return (
           <React.Fragment key={item.path}>
-            <ul className="py-2 list-none m-0">
+            <ul className="sh:py-2 sh:list-none sh:m-0">
               <SidebarItemComponent
                 key={item.path}
                 path={item.path}
@@ -171,7 +171,7 @@ export default function Sidebar({ meta, docsBase }: SidebarProps) {
   }, [items, childrenMap, currentPath, docsBase]);
 
   return (
-    <aside className="p-4 overflow-y-auto">
+    <aside className="sh:p-4 sh:overflow-y-auto">
       <ul>{renderItems()}</ul>
     </aside>
   );

@@ -9,7 +9,7 @@ import { ThemeProvider } from "next-themes";
 import AnchorLinkHandler from "../components/anchor-link-handler";
 import Switcher from "../components/switcher";
 import ClientWrapper from "../components/client-wrapper";
-import "../styles/docs.css";
+import "../docs.css";
 
 const font = GeistSans;
 
@@ -55,24 +55,24 @@ export function DocsLayout({ children, navbar, meta }: DocsLayoutProps) {
         >
           <ClientWrapper>
             <AnchorLinkHandler />
-            <div className="flex flex-col w-full max-w-screen-xl mx-auto px-4">
+            <div className="sh:flex sh:flex-col sh:w-full sh:max-w-7xl sh:mx-auto sh:px-4">
               {navbar && navbar}
-              <div className="flex mt-20 relative">
+              <div className="sh:flex sh:mt-20 sh:relative">
                 {/* Sidebar */}
-                <div className="hidden md:flex w-64 flex-shrink-0">
-                  <div className="fixed top-20 bottom-0 overflow-y-auto w-64">
+                <div className="sh:hidden sh:md:flex sh:w-64 sh:flex-shrink-0">
+                  <div className="sh:fixed sh:top-20 sh:bottom-0 sh:overflow-y-auto sh:w-64">
                     <Sidebar docsBase={docsPath} meta={meta} />
                   </div>
                 </div>
-                <main className="flex-1 p-6">
-                  <div className="mb-4">
+                <main className="sh:flex-1 sh:p-6">
+                  <div className="sh:mb-4">
                     <Breadcrumbs docsBase={docsPath} meta={meta} />
                   </div>
                   <div className="docs">{children}</div>
                   <Switcher meta={meta} docsBase={docsPath} />
                 </main>
-                <div className="hidden lg:flex w-64 flex-shrink-0">
-                  <div className="fixed top-20 bottom-0 w-64">
+                <div className="sh:hidden sh:lg:flex sh:w-64 sh:flex-shrink-0">
+                  <div className="sh:fixed sh:top-20 sh:bottom-0 sh:w-64">
                     <Toc />
                   </div>
                 </div>

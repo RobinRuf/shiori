@@ -1,6 +1,5 @@
 import React from "react";
 import { IconExternalLink } from "@tabler/icons-react";
-import "../../styles/docs.css";
 
 export interface ExternalLinkProps {
   href: string;
@@ -16,12 +15,7 @@ export interface ExternalLinkProps {
  */
 const ExternalLink: React.FC<ExternalLinkProps> = ({ href, children }) => {
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-[var(--color-primary)] inline-flex items-center gap-1 no-underline transition-opacity duration-200 ease-in-out hover:opacity-90"
-    >
+    <a href={href} target="_blank" rel="noopener noreferrer">
       {children}
       <IconExternalLink size={16} />
     </a>

@@ -8,7 +8,7 @@ import packageJson from "./package.json";
 
 export default defineConfig({
   name: packageJson.name,
-  entry: [...defaultEntry, "src/**/*.css", "!src/icon.ts"],
+  entry: [...defaultEntry, "!src/icon.ts"],
   format: ["esm", "cjs"],
   dts: true,
   sourcemap: true,
@@ -44,9 +44,9 @@ export default defineConfig({
   ],
   async onSuccess() {
     // Use Tailwind CSS CLI because CSS processing by tsup produce different result
-    await $`npx @tailwindcss/cli -i src/styles/docs.css -o dist/styles/docs.css`;
+    await $`npx @tailwindcss/cli -i src/docs.css -o dist/docs.css`;
     const styleContent = await fs.readFile(
-      path.resolve("dist", "styles/docs.css"),
+      path.resolve("dist", "docs.css"),
       "utf8",
     );
     await fs.writeFile(

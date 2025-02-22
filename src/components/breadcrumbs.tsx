@@ -44,18 +44,20 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ meta, docsBase }) => {
   }
 
   return (
-    <nav className="text-sm flex items-center space-x-2">
+    <nav className="sh:text-sm sh:flex sh:items-center sh:space-x-2">
       {breadcrumbSegments.map((segment, index) => {
         const isLast = index === breadcrumbSegments.length - 1;
 
         return (
           <React.Fragment key={segment.path}>
             {isLast ? (
-              <span className="font-semibold opacity-100">{segment.label}</span>
+              <span className="sh:font-semibold sh:opacity-100">
+                {segment.label}
+              </span>
             ) : (
               <Link
                 href={segment.path}
-                className="hover:no-underline cursor-pointer text-[var(--color-content-transparent)] hover:text-[var(--color-content)] transition duration-200 ease-in-out"
+                className="sh:hover:no-underline sh:cursor-pointer sh:text-content-transparent sh:hover:text-content sh:transition sh:duration-200 sh:ease-in-out"
               >
                 {segment.label}
               </Link>

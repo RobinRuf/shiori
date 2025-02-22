@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Fuse, { RangeTuple } from "fuse.js";
 import Link from "next/link";
-import "../styles/docs.css";
 
 type FuseMatch = {
   key: string;
@@ -95,7 +94,7 @@ export default function Search() {
       <>
         {previewStart > 0 && "..."}
         {preview.slice(0, bestStart - previewStart)}
-        <span className="bg-yellow-200 text-gray-900 font-bold">
+        <span className="sh:bg-yellow-200 sh:text-gray-900 sh:font-bold">
           {preview.slice(bestStart - previewStart, bestEnd - previewStart + 1)}
         </span>
         {preview.slice(bestEnd - previewStart + 1)}
@@ -105,24 +104,24 @@ export default function Search() {
   };
 
   return (
-    <div className="relative" ref={containerRef}>
-      <div className="flex items-center gap-2 bg-[var(--color-sitebg)] px-4 py-2 rounded-lg shadow w-64">
+    <div className="sh:relative" ref={containerRef}>
+      <div className="sh:flex sh:items-center sh:gap-2 sh:bg-sitebg sh:px-4 sh:py-2 sh:rounded-lg sh:shadow sh:w-64">
         <input
           ref={inputRef}
           type="text"
           value={query}
           onChange={handleSearch}
           placeholder="Search documentation..."
-          className="flex-1 bg-transparent border-0 outline-none"
+          className="sh:flex-1 sh:bg-transparent sh:border-0 sh:outline-none"
         />
-        <span className="text-sm text-gray-500">⌘K</span>
+        <span className="sh:text-sm sh:text-gray-500">⌘K</span>
       </div>
       {results.length > 0 && (
-        <ul className="list-none m-0 p-0 absolute top-[calc(100%+1rem)] right-0 max-w-[30rem] w-[30rem] bg-[var(--color-accent-transparent)] rounded-lg shadow p-2 backdrop-blur">
+        <ul className="sh:list-none sh:m-0 sh:p-0 sh:absolute sh:top-[calc(100%+1rem)] sh:right-0 sh:max-w-[30rem] sh:w-[30rem] sh:bg-accent-transparent sh:rounded-lg sh:shadow sh:p-2 sh:backdrop-blur">
           {results.map(({ item, matches }, index) => (
             <li
               key={`${item.id}-${index}`}
-              className="p-2 rounded-lg cursor-pointer transition-colors duration-200 ease-in-out hover:bg-[var(--color-sitebg-transparent)]"
+              className="sh:p-2 sh:rounded-lg sh:cursor-pointer sh:transition-colors sh:duration-200 sh:ease-in-out sh:hover:bg-sitebg-transparent"
             >
               <Link
                 href={item.url}
@@ -130,8 +129,8 @@ export default function Search() {
                   resetSearch();
                 }}
               >
-                <div className="font-semibold mb-1">{item.title}</div>
-                <div className="text-sm text-gray-500">
+                <div className="sh:font-semibold sh:mb-1">{item.title}</div>
+                <div className="sh:text-sm sh:text-gray-500">
                   {matches
                     ?.filter((match: FuseMatch) => match.key === "content")
                     .slice(0, 1)

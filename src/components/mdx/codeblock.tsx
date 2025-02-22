@@ -8,7 +8,6 @@ import {
   oneLight,
 } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { IconCopy, IconCheck } from "@tabler/icons-react";
-import "../../styles/docs.css";
 
 import { Ts } from "../../icons/codeblock";
 import { Js } from "../../icons/codeblock";
@@ -119,7 +118,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   if (primitive) {
     return (
       <div
-        className="relative overflow-x-auto my-10 rounded-lg border border-gray-300 shadow-sm"
+        className="sh:relative sh:overflow-x-auto sh:my-10 sh:rounded-lg sh:border sh:border-gray-300 sh:shadow-sm"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -151,7 +150,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
         {isHovered && (
           <button
             onClick={handleCopy}
-            className="absolute top-2 right-2 border-0 bg-transparent rounded cursor-pointer transition-all duration-200 ease-in-out hover:opacity-80"
+            className="sh:absolute sh:top-2 sh:right-2 sh:border-0 sh:bg-transparent sh:rounded sh:cursor-pointer sh:transition-all sh:duration-200 sh:ease-in-out sh:hover:opacity-80"
             aria-label="Copy to clipboard"
           >
             {copied ? (
@@ -166,20 +165,22 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
   }
 
   return (
-    <div className="relative border border-gray-300 rounded-lg shadow-sm bg-[var(--color-sitebg)] my-10 overflow-hidden">
-      <div className="flex items-center justify-between p-2 border-b border-gray-300">
-        <div className="flex items-center gap-2 ml-2">
+    <div className="sh:relative sh:border sh:border-gray-300 sh:rounded-lg sh:shadow-sm sh:bg-sitebg sh:my-10 sh:overflow-hidden">
+      <div className="sh:flex sh:items-center sh:justify-between sh:p-2 sh:border-b sh:border-gray-300">
+        <div className="sh:flex sh:items-center sh:gap-2 sh:ml-2">
           {Logo && (
             <div className="w-[16px] h-[16px]">
               <Logo />
             </div>
           )}
-          {filename && <span className="text-sm font-light">{filename}</span>}
+          {filename && (
+            <span className="sh:text-sm sh:font-light">{filename}</span>
+          )}
         </div>
-        <div className="flex items-center gap-2 mr-2">
+        <div className="sh:flex sh:items-center sh:gap-2 sh:mr-2">
           <button
             onClick={handleCopy}
-            className="absolute top-2 right-2 border-0 bg-transparent rounded cursor-pointer transition-all duration-200 ease-in-out hover:opacity-80"
+            className="sh:absolute sh:top-2 sh:right-2 sh:border-0 sh:bg-transparent sh:rounded sh:cursor-pointer sh:transition-all sh:duration-200 sh:ease-in-out sh:hover:opacity-80"
             aria-label="Copy to clipboard"
           >
             {copied ? (
@@ -190,7 +191,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({
           </button>
         </div>
       </div>
-      <div className="overflow-x-auto">
+      <div className="sh:overflow-x-auto">
         <SyntaxHighlighter
           language={language}
           style={theme === "light" ? oneLight : oneDark}

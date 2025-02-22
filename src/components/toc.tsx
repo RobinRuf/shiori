@@ -61,21 +61,22 @@ export default function Toc() {
   };
 
   return (
-    <aside className="p-4 text-sm w-64 h-full">
-      <div className="font-semibold mb-4 bg-[var(--color-sitebg)]">
-        On this page
-      </div>
-      <ul className="overflow-y-auto max-h-[calc(100%-2rem)] list-none space-y-1">
+    <aside className="sh:p-4 sh:text-sm sh:w-64 sh:h-full">
+      <div className="sh:font-semibold sh:mb-4 sh:bg-sitebg">On this page</div>
+      <ul className="sh:overflow-y-auto sh:max-h-[calc(100%-2rem)] sh:list-none sh:space-y-1">
         {tocItems.map((item) => {
           const isActive = activeId === item.id;
           return (
-            <li key={item.id} className={`${item.level === 3 ? "pl-4" : ""}`}>
+            <li
+              key={item.id}
+              className={`${item.level === 3 ? "sh:pl-4" : ""}`}
+            >
               <button
                 onClick={() => handleClick(item.id)}
-                className={`text-left cursor-pointer transition-colors duration-200 ${
+                className={`sh:text-left sh:cursor-pointer sh:transition-colors sh:duration-200 ${
                   isActive
-                    ? "text-[var(--color-primary)] font-semibold opacity-100"
-                    : "text-[var(--color-content-transparent)] hover:text-[var(--color-content)]"
+                    ? "sh:text-primary sh:font-semibold sh:opacity-100"
+                    : "sh:text-content-transparent sh:hover:text-content"
                 }`}
               >
                 {item.text}

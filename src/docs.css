@@ -1,0 +1,118 @@
+@import "tailwindcss" source(none) prefix(sh);
+
+@source './**/*.{ts,tsx}';
+
+@variant dark (&:is([data-theme="dark"] *));
+
+/* ========================= */
+/* THEME – DESIGN VARIABLES  */
+/* ========================= */
+@theme {
+  /* COLORS */
+  --color-primary: #1d4ed8;
+  --color-primary-dark: #2c5ce3;
+
+  --color-sitebg: #f2f2f2;
+  --color-sitebg-transparent: #f2f2f2b3;
+  --color-content: #0f172a;
+  --color-content-transparent: #0f172ab3;
+  --color-accent: #ffffff;
+  --color-accent-transparent: #ffffff80;
+}
+
+/* ========================= */
+/* BASE STYLES               */
+/* ========================= */
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--sh-color-gray-200, currentColor);
+  }
+
+  html,
+  body {
+    @apply sh:scroll-smooth sh:max-w-[100vw] sh:overflow-x-hidden sh:overscroll-none sh:bg-sitebg sh:text-content;
+  }
+
+  * {
+    @apply sh:box-border sh:p-0 sh:m-0;
+  }
+
+  /* Text selection */
+  ::selection {
+    @apply sh:bg-primary sh:text-white;
+  }
+  [data-theme="dark"] ::selection {
+    @apply sh:bg-primary-dark sh:text-white;
+  }
+
+  /* MDX Scrollbar styles */
+  .overflow-y-auto::-webkit-scrollbar {
+    @apply sh:bg-transparent sh:w-[6px];
+  }
+  .overflow-y-auto::-webkit-scrollbar-track {
+    @apply sh:bg-transparent;
+  }
+  .overflow-y-auto::-webkit-scrollbar-thumb {
+    @apply sh:rounded-[20px] sh:border-2 sh:border-transparent sh:bg-content sh:bg-clip-content;
+  }
+
+  a {
+    @apply sh:no-underline;
+  }
+}
+
+@layer utilities {
+  .docs > h2::before {
+    @apply sh:content-[''] sh:absolute sh:top-[-12px] sh:left-0 sh:w-full sh:h-[1px] sh:bg-content-transparent;
+  }
+
+  .docs > p > a {
+    @apply sh:text-primary sh:inline-flex sh:items-center sh:gap-1 sh:underline sh:transition-opacity sh:duration-200 sh:ease-in-out sh:hover:opacity-90;
+  }
+}
+
+@layer base {
+  /* SYSTEM COLOR */
+  @media (prefers-color-scheme: light) {
+    :root {
+      --sh-color-sitebg: #f2f2f2;
+      --sh-color-sitebg-transparent: #f2f2f2b3;
+      --sh-color-content: #0f172a;
+      --sh-color-content-transparent: #0f172ab3;
+      --sh-color-accent: #ffffff;
+      --sh-color-accent-transparent: #ffffff80;
+    }
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --sh-color-sitebg: #121212;
+      --sh-color-sitebg-transparent: #121212b3;
+      --sh-color-content: #f3f4f6;
+      --sh-color-content-transparent: #f3f4f6b3;
+      --sh-color-accent: #171616;
+      --sh-color-accent-transparent: #17161680;
+    }
+  }
+
+  /* DARK/LIGHT MODE */
+  :root[data-theme="light"] {
+    --sh-color-sitebg: #f2f2f2;
+    --sh-color-sitebg-transparent: #f2f2f2b3;
+    --sh-color-content: #0f172a;
+    --sh-color-content-transparent: #0f172ab3;
+    --sh-color-accent: #ffffff;
+    --sh-color-accent-transparent: #ffffff80;
+  }
+  :root[data-theme="dark"] {
+    --sh-color-sitebg: #121212;
+    --sh-color-sitebg-transparent: #121212b3;
+    --sh-color-content: #f3f4f6;
+    --sh-color-content-transparent: #f3f4f6b3;
+    --sh-color-accent: #171616;
+    --sh-color-accent-transparent: #17161680;
+  }
+}

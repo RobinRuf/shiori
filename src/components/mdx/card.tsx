@@ -35,13 +35,13 @@ const Card: React.FC<CardProps> = ({ path, excerpt, meta }) => {
     <Link
       key={path}
       href={`/docs/${path}`}
-      className="flex flex-col h-[200px] w-[250px] border border-gray-300 rounded-lg shadow-sm bg-[var(--color-sitebg)] p-4 my-4 mx-auto transition-all duration-200 ease-in-out md:h-[150px] md:w-[400px] hover:shadow-lg hover:border-[var(--color-primary)]"
+      className="sh:flex sh:flex-col sh:h-[200px] sh:w-[250px] sh:border sh:border-gray-300 sh:rounded-lg sh:shadow-sm sh:bg-sitebg sh:p-4 sh:my-4 sh:mx-auto sh:transition-all sh:duration-200 sh:ease-in-out sh:md:h-[150px] sh:md:w-[400px] sh:hover:shadow-lg sh:hover:border-primary"
     >
-      <div className="flex-1">
-        <h4 className="text-lg font-semibold text-[var(--color-primary)]">
-          {title}
-        </h4>
-        <p className="text-sm text-gray-500 mt-1">{truncatedExcerpt}</p>
+      <div className="sh:flex-1">
+        <h4 className="sh:text-lg sh:font-semibold sh:text-primary">{title}</h4>
+        <p className="sh:text-sm sh:text-gray-500 sh:mt-1">
+          {truncatedExcerpt}
+        </p>
       </div>
     </Link>
   );

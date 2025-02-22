@@ -2,7 +2,6 @@ import Image, { StaticImageData } from "next/image";
 import Search from "./search";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import "../styles/docs.css";
 
 import { GithubLightmode } from "../icons";
 import { GithubDarkmode } from "../icons";
@@ -37,20 +36,20 @@ export function Navbar({ logo, navItems, githubLink }: NavbarProps) {
   const GithubLogo = theme === "light" ? GithubLightmode : GithubDarkmode;
 
   return (
-    <div className="w-full flex justify-center px-6 z-50">
-      <div className="fixed top-3 w-full flex justify-center px-6">
-        <div className="w-full max-w-screen-xl bg-[var(--color-accent)] rounded-lg h-14 flex items-center justify-between px-2 shadow">
-          <div className="flex items-center">
+    <div className="sh:w-full sh:flex sh:justify-center sh:px-6 sh:z-50">
+      <div className="sh:fixed sh:top-3 sh:w-full sh:flex sh:justify-center sh:px-6">
+        <div className="sh:w-full sh:max-w-screen-xl sh:bg-accent sh:rounded-lg sh:h-14 sh:flex sh:items-center sh:justify-between sh:px-2 sh:shadow">
+          <div className="sh:flex sh:items-center">
             {logo ? <Image src={logo} height={40} alt="Logo" /> : <b>Shiori</b>}
           </div>
-          <div className="flex items-center bg-transparent gap-4">
+          <div className="sh:flex sh:items-center sh:bg-transparent sh:gap-4">
             {navItems && navItems.length > 0 && (
-              <div className="flex items-center gap-4">
+              <div className="sh:flex sh:items-center sh:gap-4">
                 {navItems.map(([label, link], index) => (
                   <Link
                     key={index}
                     href={link}
-                    className="font-light cursor-pointer transition-opacity duration-200 ease-out mr-4 no-underline text-inherit hover:opacity-80"
+                    className="sh:font-light sh:cursor-pointer sh:transition-opacity sh:duration-200 sh:ease-out sh:mr-4 sh:no-underline sh:text-inherit sh:hover:opacity-80"
                   >
                     {label}
                   </Link>
@@ -62,7 +61,7 @@ export function Navbar({ logo, navItems, githubLink }: NavbarProps) {
               <Link
                 href={githubLink}
                 target="_blank"
-                className="flex justify-center items-center h-7 w-7"
+                className="sh:flex sh:justify-center sh:items-center sh:h-7 sh:w-7"
               >
                 <GithubLogo />
               </Link>

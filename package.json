@@ -1,6 +1,6 @@
 {
   "name": "shiori-docs",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A modern and fast to setup Documentation Framework for NextJS 14+",
   "author": "Robin Ruf",
   "keywords": [],
@@ -16,7 +16,7 @@
     "build": "tsup",
     "dev": "npm run transform-svgs && tsup --watch",
     "version": "changeset version",
-    "release": "changeset publish"
+    "release": "changeset publish --access public"
   },
   "peerDependencies": {
     "next": ">=14",
@@ -81,6 +81,7 @@
     "dist"
   ],
   "publishConfig": {
+    "provenance": true,
     "access": "public"
   },
   "sideEffects": false

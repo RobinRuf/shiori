@@ -3,6 +3,7 @@
   "version": "0.1.3",
   "description": "A modern and fast to setup Documentation Framework for NextJS 14+",
   "author": "Robin Ruf",
+  "repository": "https://github.com/RobinRuf/shiori",
   "keywords": [],
   "license": "MIT",
   "main": "dist/index.js",

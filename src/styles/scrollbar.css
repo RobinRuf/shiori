@@ -1,0 +1,34 @@
+.shiori-scrollbar {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: rgba(115, 115, 115, 0.4) transparent; /* Firefox */
+  scrollbar-gutter: stable;
+
+  &::-webkit-scrollbar {
+    @apply sh:size-3;
+  }
+
+  &::-webkit-scrollbar-track {
+    @apply sh:bg-transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply sh:rounded-[10px];
+
+    &:hover {
+      border: 3px solid transparent;
+      background-color: var(--tw-shadow-color);
+      background-clip: content-box;
+      @apply sh:shadow-neutral-500/20 sh:hover:shadow-neutral-500/40;
+    }
+  }
+}
+
+/* Hide scrollbar */
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+
+  &::-webkit-scrollbar {
+    @apply sh:hidden; /* Chrome, Safari and Opera */
+  }
+}

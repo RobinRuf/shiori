@@ -9,14 +9,18 @@ import { ThemeProvider } from "next-themes";
 import AnchorLinkHandler from "../components/anchor-link-handler";
 import Switcher from "../components/switcher";
 import ClientWrapper from "../components/client-wrapper";
+import { StaticImageData } from "next/image";
 import "../docs.css";
+import { Navbar } from "../components/navbar";
 
 const font = GeistSans;
 
 export interface DocsLayoutProps {
-  children?: React.ReactNode;
-  navbar: React.ReactNode;
+  logo?: string | StaticImageData;
+  navItems?: [string, string][];
+  githubLink?: string;
   meta: { title?: string; [key: string]: any };
+  children?: React.ReactNode;
 }
 
 const docsPath = "/docs";
@@ -35,7 +39,9 @@ const docsPath = "/docs";
  * - **Table of Contents (Toc):** Displays a table of contents for the documentation.
  * - **ClientWrapper & AnchorLinkHandler:** Wrap the content to ensure proper client-side behavior and handle anchor link clicks.
  *
- * @param navbar - The navigation bar element to display at the top of the layout.
+ * @param logo - The logo, displayed on the left side in the navbar.
+ * @param navItems - The navigation items.
+ * @param githubLink - The link to the github repo of your project.
  * @param meta - An object containing metadata for the documentation pages (e.g., page titles).
  *                        The keys in this object correspond to page identifiers.
  * @param docsBase - The base path for the documentation (e.g., "docs"). This value is used by child
@@ -43,7 +49,13 @@ const docsPath = "/docs";
  *
  * @returns The complete documentation layout wrapped in the necessary HTML structure.
  */
-export function DocsLayout({ children, navbar, meta }: DocsLayoutProps) {
+export function DocsLayout({
+  logo,
+  navItems,
+  githubLink,
+  meta,
+  children,
+}: DocsLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
@@ -56,7 +68,12 @@ export function DocsLayout({ children, navbar, meta }: DocsLayoutProps) {
           <ClientWrapper>
             <AnchorLinkHandler />
             <div className="sh:flex sh:flex-col sh:w-full sh:max-w-7xl sh:mx-auto sh:px-4">
-              {navbar && navbar}
+              <Navbar
+                logo={logo}
+                navItems={navItems}
+                githubLink={githubLink}
+                meta={meta}
+              />
               <div className="sh:flex sh:mt-20 sh:relative">
                 {/* Sidebar */}
                 <div className="sh:hidden sh:md:flex sh:w-64 sh:flex-shrink-0">

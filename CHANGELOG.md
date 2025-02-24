@@ -1,5 +1,13 @@
 # shiori-docs
 
+## 0.2.0
+
+### Minor Changes
+
+- f508f61: - added mobile menu
+  - appearance optimizations
+  - small bug fixes
+
 ## 0.1.4
 
 ### Patch Changes

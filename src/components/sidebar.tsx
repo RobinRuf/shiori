@@ -18,6 +18,7 @@ export interface SidebarItem {
 export interface SidebarProps {
   meta: MetaData;
   docsBase?: string;
+  onClose?: () => void;
 }
 
 interface SidebarItemProps {
@@ -28,6 +29,7 @@ interface SidebarItemProps {
   hasChildren: boolean;
   isExpanded: boolean;
   docsBase?: string;
+  onClose?: () => void;
 }
 
 function SidebarItemComponent({
@@ -38,12 +40,14 @@ function SidebarItemComponent({
   hasChildren,
   isExpanded,
   docsBase,
+  onClose,
 }: SidebarItemProps) {
   return (
     <li
       className={`sh:min-w-[14rem] sh:max-w-[18rem] sh:list-none ${
         level === 2 ? "sh:pl-4" : ""
       }`}
+      onClick={onClose}
     >
       <div className="sh:flex sh:items-center">
         <Link
@@ -72,7 +76,7 @@ function SidebarItemComponent({
   );
 }
 
-export default function Sidebar({ meta, docsBase }: SidebarProps) {
+export default function Sidebar({ meta, docsBase, onClose }: SidebarProps) {
   const pathname = usePathname();
   let currentPath = pathname;
   if (docsBase && pathname.startsWith(docsBase)) {
@@ -124,6 +128,7 @@ export default function Sidebar({ meta, docsBase }: SidebarProps) {
                 hasChildren={false}
                 isExpanded={false}
                 docsBase={docsBase}
+                onClose={onClose}
               />
             </ul>
           </React.Fragment>
@@ -147,6 +152,7 @@ export default function Sidebar({ meta, docsBase }: SidebarProps) {
                 hasChildren={hasChildren}
                 isExpanded={isExpanded}
                 docsBase={docsBase}
+                onClose={onClose}
               />
               {isExpanded &&
                 hasChildren &&
@@ -160,6 +166,7 @@ export default function Sidebar({ meta, docsBase }: SidebarProps) {
                     hasChildren={false}
                     isExpanded={false}
                     docsBase={docsBase}
+                    onClose={onClose}
                   />
                 ))}
             </ul>
@@ -171,7 +178,7 @@ export default function Sidebar({ meta, docsBase }: SidebarProps) {
   }, [items, childrenMap, currentPath, docsBase]);
 
   return (
-    <aside className="sh:p-4 sh:overflow-y-auto">
+    <aside className="sh:p-4 sh:max-h-full sh:overflow-y-scroll shiori-scrollbar">
       <ul>{renderItems()}</ul>
     </aside>
   );

@@ -2,6 +2,8 @@
 
 @source './**/*.{ts,tsx}';
 
+@import "./styles/scrollbar.css";
+
 @variant dark (&:is([data-theme="dark"] *));
 
 /* ========================= */
@@ -47,17 +49,6 @@
   }
   [data-theme="dark"] ::selection {
     @apply sh:bg-primary-dark sh:text-white;
-  }
-
-  /* MDX Scrollbar styles */
-  .overflow-y-auto::-webkit-scrollbar {
-    @apply sh:bg-transparent sh:w-[6px];
-  }
-  .overflow-y-auto::-webkit-scrollbar-track {
-    @apply sh:bg-transparent;
-  }
-  .overflow-y-auto::-webkit-scrollbar-thumb {
-    @apply sh:rounded-[20px] sh:border-2 sh:border-transparent sh:bg-content sh:bg-clip-content;
   }
 
   a {

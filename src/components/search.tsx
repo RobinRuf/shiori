@@ -8,7 +8,7 @@ type FuseMatch = {
   value: string;
 };
 
-export default function Search() {
+export default function Search({ onClose }: { onClose?: () => void }) {
   const [searchIndex, setSearchIndex] = useState<any[]>([]);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<any[]>([]);
@@ -105,7 +105,7 @@ export default function Search() {
 
   return (
     <div className="sh:relative" ref={containerRef}>
-      <div className="sh:flex sh:items-center sh:gap-2 sh:bg-sitebg sh:px-4 sh:py-2 sh:rounded-lg sh:shadow sh:w-64">
+      <div className="sh:flex sh:items-center sh:gap-2 sh:bg-sitebg sh:px-4 sh:py-2 sh:rounded-lg sh:shadow sh:w-full sh:md:w-64">
         <input
           ref={inputRef}
           type="text"
@@ -114,14 +114,17 @@ export default function Search() {
           placeholder="Search documentation..."
           className="sh:flex-1 sh:bg-transparent sh:border-0 sh:outline-none"
         />
-        <span className="sh:text-sm sh:text-gray-500">⌘K</span>
+        <span className="sh:hidden sh:md:flex sh:text-sm sh:text-gray-500">
+          ⌘K
+        </span>
       </div>
       {results.length > 0 && (
-        <ul className="sh:list-none sh:m-0 sh:p-0 sh:absolute sh:top-[calc(100%+1rem)] sh:right-0 sh:max-w-[30rem] sh:w-[30rem] sh:bg-accent-transparent sh:rounded-lg sh:shadow sh:p-2 sh:backdrop-blur">
+        <ul className="sh:max-h-96 sh:overflow-y-auto shiori-scrollbar sh:list-none sh:m-0 sh:p-0 sh:absolute sh:top-[calc(100%+1rem)] sh:md:right-0 sh:md:max-w-[30rem] sh:md:w-[30rem] sh:w-full sh:px-6 sh:md:px-0 sh:bg-sitebg-transparent sh:md:bg-accent-transparent sh:rounded-lg sh:shadow sh:backdrop-blur">
           {results.map(({ item, matches }, index) => (
             <li
               key={`${item.id}-${index}`}
-              className="sh:p-2 sh:rounded-lg sh:cursor-pointer sh:transition-colors sh:duration-200 sh:ease-in-out sh:hover:bg-sitebg-transparent"
+              className="sh:m-2 sh:p-2 sh:rounded-lg sh:cursor-pointer sh:transition-colors sh:duration-200 sh:ease-in-out sh:md:hover:bg-sitebg-transparent"
+              onClick={onClose}
             >
               <Link
                 href={item.url}
@@ -130,7 +133,7 @@ export default function Search() {
                 }}
               >
                 <div className="sh:font-semibold sh:mb-1">{item.title}</div>
-                <div className="sh:text-sm sh:text-gray-500">
+                <div className="sh:text-sm sh:text-content-transparent">
                   {matches
                     ?.filter((match: FuseMatch) => match.key === "content")
                     .slice(0, 1)

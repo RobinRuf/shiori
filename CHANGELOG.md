@@ -1,5 +1,11 @@
 # shiori-docs
 
+## 0.2.3
+
+### Patch Changes
+
+- 0858a0f: -
+
 ## 0.2.2
 
 ### Patch Changes

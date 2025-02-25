@@ -1,6 +1,6 @@
 {
   "name": "shiori-docs",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A modern and fast to setup Documentation Framework for NextJS 14+",
   "author": "Robin Ruf",
   "repository": "https://github.com/RobinRuf/shiori",

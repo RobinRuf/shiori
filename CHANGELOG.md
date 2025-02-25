@@ -1,5 +1,11 @@
 # shiori-docs
 
+## 0.2.2
+
+### Patch Changes
+
+- 51c0fac: - tailwind bug fixes
+
 ## 0.2.1
 
 ### Patch Changes

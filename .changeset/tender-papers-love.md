@@ -1,5 +1,0 @@
----
-"shiori-docs": patch
----
-
--

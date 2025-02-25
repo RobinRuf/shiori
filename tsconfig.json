@@ -3,7 +3,6 @@
     "target": "es2021",
     "module": "ESNext",
     "declaration": true,
-    "noEmit": true,
     "esModuleInterop": true,
     "strict": true,
     "outDir": "dist",

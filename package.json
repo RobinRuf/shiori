@@ -82,7 +82,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "./src/styles"
   ],
   "publishConfig": {
     "access": "public"

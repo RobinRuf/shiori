@@ -44,8 +44,6 @@ const docsPath = "/docs";
  * @param githubLink - The link to the github repo of your project.
  * @param meta - An object containing metadata for the documentation pages (e.g., page titles).
  *                        The keys in this object correspond to page identifiers.
- * @param docsBase - The base path for the documentation (e.g., "docs"). This value is used by child
- *                              components (such as Sidebar and Breadcrumbs) to resolve relative paths.
  *
  * @returns The complete documentation layout wrapped in the necessary HTML structure.
  */

@@ -1,5 +1,11 @@
 # shiori-docs
 
+## 0.2.1
+
+### Patch Changes
+
+- 97f0da4: - minor fixes
+
 ## 0.2.0
 
 ### Minor Changes
